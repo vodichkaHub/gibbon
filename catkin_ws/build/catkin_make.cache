@@ -1,0 +1,2 @@
+joint_state_publisher/joint_state_publisher:joint_state_publisher/joint_state_publisher_gui:urdf_tutorial
+-DCATKIN_DEVEL_PREFIX=/home/vodichka/workspace/gibbon/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/vodichka/workspace/gibbon/catkin_ws/install -G Unix Makefiles
