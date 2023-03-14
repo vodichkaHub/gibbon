@@ -26,6 +26,11 @@ catkin_package(
 #  DEPENDS system_lib
 )
 
+if(CATKIN_ENABLE_TESTING)
+  find_package(roslaunch REQUIRED)
+  roslaunch_add_file_check(launch)
+endif()
+
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}

@@ -1,0 +1,41 @@
+<?xml version='1.0'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name='monkey'>
+
+    <xacro:property name="arm_radius" value="0.02" />
+    <xacro:property name="arm_len" value="0.7" />
+    <material name="grey1"><color rgba="0.95 0.95 0.95 1"/></material>
+    <material name="grey2"><color rgba="0.91 0.91 0.91 1"/></material>
+
+    <link name='base_link'>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </link> 
+
+    <link name='link_1'>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="grey2"/>
+      <visual name='visual'>
+        <geometry>
+          <cylinder radius="${arm_radius}" length="${arm_len}"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name='link_2'>
+      <origin rpy="0 0 0" xyz="0 0.02 0"/>
+      <material name="grey1"/>
+      <visual name='visual'>
+        <geometry>
+          <cylinder radius="${arm_radius}" length="${arm_len}"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="base_link__link_1" type="fixed">
+      <parent link="base_link"/>
+      <child link="link_1"/>
+    </joint>
+    <joint name="base_link__link_2" type="fixed">
+      <parent link="base_link"/>
+      <child link="link_2"/>
+    </joint>
+</robot>
