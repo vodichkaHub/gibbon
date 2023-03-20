@@ -7,6 +7,8 @@ Panels:
         - /Global Options1
         - /Status1
         - /GibbonModel1
+        - /TF1
+        - /TF1/Tree1
       Splitter Ratio: 0.5
     Tree Height: 1027
   - Class: rviz/Selection
@@ -98,9 +100,8 @@ Visualization Manager:
       Tree:
         map:
           link_1:
-            {}
-          link_2:
-            {}
+            link_2:
+              {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -131,7 +132,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 5.497115135192871
+      Distance: 3.6821982860565186
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -139,17 +140,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
-      Focal Shape Fixed Size: true
+        X: -0.007245366927236319
+        Y: -0.013780612498521805
+        Z: 1.3925580788054504e-05
+      Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.785398006439209
+      Pitch: 0.5547972917556763
       Target Frame: <Fixed Frame>
-      Yaw: 0.785398006439209
+      Yaw: 6.278584003448486
     Saved: ~
 Window Geometry:
   Displays:

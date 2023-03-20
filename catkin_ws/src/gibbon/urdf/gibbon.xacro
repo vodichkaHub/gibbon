@@ -4,13 +4,14 @@
     <xacro:property name="arm_radius" value="0.02" />
     <xacro:property name="arm_len" value="0.7" />
     <xacro:property name="PI" value="3.14159265359" />
-    <material name="grey1"><color rgba="0.95 0.95 0.95 1"/></material>
-    <material name="grey2"><color rgba="0.91 0.91 0.91 1"/></material>
+    <material name="grey1"><color rgba="1 1 1 1"/></material>
+    <material name="grey2"><color rgba="0.31 0.31 0.31 1"/></material>
 
     <link name='link_1'>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <material name="grey2"/>
       <visual name='visual'>
+        <origin rpy="0 0 0" xyz="0 0 -${arm_len/2}"/>
+        <material name="grey2"/>
         <geometry>
           <cylinder radius="${arm_radius}" length="${arm_len}"/>
         </geometry>
@@ -18,20 +19,13 @@
     </link>
 
     <link name='link_2'>
-      <origin rpy="${PI/2} 0 0" xyz="0 0.52 0"/>
-      <material name="grey1"/>
+      <origin rpy="0 0 0" xyz="${arm_radius*2} 0 0"/>
       <visual name='visual'>
+        <origin rpy="0 0 0" xyz="${arm_radius*2} 0 -${arm_len/2}"/>
+        <material name="grey1"/>
         <geometry>
           <cylinder radius="${arm_radius}" length="${arm_len}"/>
         </geometry>
       </visual>
     </link>
-
-    <joint name="link_1__link_2" type="revolute">
-      <parent link="link_1"/>
-      <child link="link_2"/>
-      <limit effort="1000.0" lower="${-PI}" upper="${PI}" velocity="0.5"/>
-      <origin rpy=".5 0 0" xyz="${arm_radius+1} 0 0.2"/>
-    </joint>
-
 </robot>
