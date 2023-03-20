@@ -28,4 +28,11 @@
         </geometry>
       </visual>
     </link>
+
+    <joint name="link_1__link_2" type="revolute">
+      <parent link="link_1"/>
+      <child link="link_2"/>
+      <limit effort="1000.0" lower="${-PI}" upper="${PI}" velocity="0.5"/>
+      <origin rpy=".5 0 0" xyz="${arm_radius+1} 0 0.2"/>
+    </joint>
 </robot>
