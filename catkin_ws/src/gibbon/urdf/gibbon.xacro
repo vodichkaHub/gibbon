@@ -3,7 +3,6 @@
 
     <xacro:property name="arm_radius" value="0.02" />
     <xacro:property name="arm_len" value="0.7" />
-    <!-- <xacro:property name="PI" value="3.14159265359" /> -->
     <xacro:property name="width" value="0.2" />
     <xacro:property name="polelen" value="0.0" />
 
@@ -17,6 +16,13 @@
       </inertial>
     </xacro:macro>
 
+    <link name="base_link"/>
+    <joint name="base_link__link_1" type="fixed">
+      <parent link="base_link"/>
+      <child link="link_1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+
     <link name='link_1'>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <visual name='visual'>
@@ -26,6 +32,7 @@
           <cylinder radius="${arm_radius}" length="${arm_len}"/>
         </geometry>
       </visual>
+      <xacro:default_inertial mass="0.5"/>
     </link>
 
     <link name='link_2'>
@@ -37,6 +44,7 @@
           <cylinder radius="${arm_radius}" length="${arm_len}"/>
         </geometry>
       </visual>
+      <xacro:default_inertial mass="0.5"/>
     </link>
 
     <joint name="link_1__link_2" type="revolute">
@@ -71,7 +79,7 @@
         </geometry>
         <origin xyz="0 0 0" rpy="0 0 0 "/>
       </collision>
-      <xacro:default_inertial mass="0.05"/>
+      <xacro:default_inertial mass="0.001"/>
     </link>
 
     <link name="link_2_gripper_pole">
@@ -87,7 +95,7 @@
         </geometry>
         <origin xyz="0 0 0" rpy="0 0 0 "/>
       </collision>
-      <xacro:default_inertial mass="0.05"/>
+      <xacro:default_inertial mass="0.001"/>
     </link>
 
     <xacro:macro name="gripper" params="prefix reflect link_name">

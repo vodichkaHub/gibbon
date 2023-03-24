@@ -64,12 +64,66 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: ""
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         link_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
+        link_1_gripper_pole:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_1_left_gripper:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_1_left_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_1_right_gripper:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_1_right_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_2_gripper_pole:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_2_left_gripper:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_2_left_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_2_right_gripper:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_2_right_tip:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -85,9 +139,31 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        base_link:
+          Value: true
         link_1:
           Value: true
+        link_1_gripper_pole:
+          Value: true
+        link_1_left_gripper:
+          Value: true
+        link_1_left_tip:
+          Value: true
+        link_1_right_gripper:
+          Value: true
+        link_1_right_tip:
+          Value: true
         link_2:
+          Value: true
+        link_2_gripper_pole:
+          Value: true
+        link_2_left_gripper:
+          Value: true
+        link_2_left_tip:
+          Value: true
+        link_2_right_gripper:
+          Value: true
+        link_2_right_tip:
           Value: true
         map:
           Value: true
@@ -99,9 +175,23 @@ Visualization Manager:
       Show Names: true
       Tree:
         map:
-          link_1:
-            link_2:
-              {}
+          base_link:
+            link_1:
+              link_1_gripper_pole:
+                link_1_left_gripper:
+                  link_1_left_tip:
+                    {}
+                link_1_right_gripper:
+                  link_1_right_tip:
+                    {}
+              link_2:
+                link_2_gripper_pole:
+                  link_2_left_gripper:
+                    link_2_left_tip:
+                      {}
+                  link_2_right_gripper:
+                    link_2_right_tip:
+                      {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -132,7 +222,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.6821982860565186
+      Distance: 6.662227153778076
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -140,17 +230,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -0.007245366927236319
-        Y: -0.013780612498521805
-        Z: 1.3925580788054504e-05
+        X: 0.19257986545562744
+        Y: 0.017666740342974663
+        Z: -1.3008439540863037
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5547972917556763
+      Pitch: 0.6197972297668457
       Target Frame: <Fixed Frame>
-      Yaw: 6.278584003448486
+      Yaw: 5.163569450378418
     Saved: ~
 Window Geometry:
   Displays:
