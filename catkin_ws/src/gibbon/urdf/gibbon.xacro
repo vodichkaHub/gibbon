@@ -3,6 +3,7 @@
 
     <xacro:property name="arm_radius" value="0.02" />
     <xacro:property name="arm_len" value="0.7" />
+    <xacro:property name="arm_mass" value="1.0" />
     <xacro:property name="width" value="0.2" />
     <xacro:property name="polelen" value="0.0" />
 
@@ -13,6 +14,13 @@
       <inertial>
         <mass value="${mass}" />
         <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+      </inertial>
+    </xacro:macro>
+
+    <xacro:macro name="arm_inertial" params="mass len">
+      <inertial>
+        <mass value="${mass}" />
+        <inertia ixx="${1.0 / 3.0 * mass * len * len}" ixy="0.0" ixz="0.0" iyy="${1.0 / 3.0 * mass * len * len}" iyz="0.0" izz="0.0" />
       </inertial>
     </xacro:macro>
 
@@ -32,7 +40,12 @@
           <cylinder radius="${arm_radius}" length="${arm_len}"/>
         </geometry>
       </visual>
-      <xacro:default_inertial mass="0.5"/>
+      <collision>
+        <geometry>
+          <cylinder radius="${arm_radius}" length="${arm_len}"/>
+        </geometry>
+      </collision>
+      <xacro:arm_inertial mass="${arm_mass}" len="${arm_len}"/>
     </link>
 
     <link name='link_2'>
@@ -44,7 +57,12 @@
           <cylinder radius="${arm_radius}" length="${arm_len}"/>
         </geometry>
       </visual>
-      <xacro:default_inertial mass="0.5"/>
+      <collision>
+        <geometry>
+          <cylinder radius="${arm_radius}" length="${arm_len}"/>
+        </geometry>
+      </collision>
+      <xacro:arm_inertial mass="${arm_mass}" len="${arm_len}"/>
     </link>
 
     <joint name="link_1__link_2" type="revolute">
