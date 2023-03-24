@@ -165,4 +165,10 @@
     <xacro:gripper prefix="right" reflect="-1" link_name="link_1" />
     <xacro:gripper prefix="left" reflect="1" link_name="link_2" />
     <xacro:gripper prefix="right" reflect="-1" link_name="link_2" />
+
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+    </gazebo>
 </robot>
