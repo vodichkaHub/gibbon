@@ -1,5 +1,5 @@
 <?xml version='1.0'?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name='monkey'>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name='gibbon'>
 
     <xacro:property name="arm_radius" value="0.02" />
     <xacro:property name="arm_len" value="0.7" />
@@ -71,6 +71,15 @@
       <limit effort="1000.0" lower="${-pi}" upper="${pi}" velocity="0.5"/>
       <origin rpy="0 0 0" xyz="${arm_radius} 0 -${arm_len}"/>
     </joint>
+    <transmission name="link_1__link_2_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="$link_1__link_2_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="link_1__link_2">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
 
     <joint name="link_1__gripper" type="fixed">
       <parent link="link_1"/>
@@ -124,6 +133,15 @@
         <parent link="${link_name}_gripper_pole"/>
         <child link="${link_name}_${prefix}_gripper"/>
       </joint>
+      <transmission name="${link_name}_${prefix}_gripper_joint_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="$${link_name}_${prefix}_gripper_joint_motor">
+          <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="${link_name}_${prefix}_gripper_joint">
+          <hardwareInterface>PositionJointInterface</hardwareInterface>
+        </joint>
+      </transmission>
       <link name="${link_name}_${prefix}_gripper">
         <visual>
           <origin rpy="${(reflect-1)/2*pi} 0 0" xyz="0 0 0"/>

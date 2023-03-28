@@ -1,13 +1,13 @@
 <launch>
   <!-- these are the arguments you can pass this launch file, for example paused:=true -->
-  <arg name="paused" default="false"/>
+  <arg name="paused" default="true"/>
   <arg name="use_sim_time" default="true"/>
   <arg name="gui" default="true"/>
   <arg name="headless" default="false"/>
   <arg name="debug" default="false"/>
   <arg name="gibbon_model" default="$(find gibbon)/urdf/gibbon.xacro"/>
   <arg name="ladder_file" default="$(find gibbon)/urdf/ladder.urdf"/>
-  <!-- <arg name="rvizconfig" default="$(find gibbon)/rviz/basic.rviz"/> -->
+  <arg name="rvizconfig" default="$(find gibbon)/rviz/basic.rviz"/>
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -23,14 +23,35 @@
 
   <!-- push robot_description to factory and spawn robot in gazebo -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-z 0.0 -R 1.57 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />
+        args="-z 1.93 -Y 1.57 -urdf -model gibbon -param robot_description
+              -J link_1__link_2 1.57
+              -J link_1_left_gripper_joint 0.15
+              -J link_1_right_gripper_joint 0.15"
+              respawn="false" output="screen" />
 
   <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="30.0" />
   </node>
 
-  <!-- <node pkg="tf" type="static_transform_publisher" name="map_broadcaster" args="0 0 0 0 0 0 1 map base_link 100" />
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" /> -->
+  <node pkg="tf" type="static_transform_publisher" name="map_broadcaster" args="0 0 0 0 0 0 1 map base_link 100" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
 
+
+  <!-- CONTROL -->
+  <rosparam command="load" file="$(find gibbon)/config/joints.yaml" ns="gibbon_joint_state_controller" />
+  <rosparam command="load" file="$(find gibbon)/config/drive.yaml" ns="gibbon_joint_drive" />
+  <rosparam command="load" file="$(find gibbon)/config/l1_dl.yaml" ns="gibbon_joint_l1_dl" />
+  <rosparam command="load" file="$(find gibbon)/config/l1_dr.yaml" ns="gibbon_joint_l1_dr" />
+  <rosparam command="load" file="$(find gibbon)/config/l2_dl.yaml" ns="gibbon_joint_l2_dl" />
+  <rosparam command="load" file="$(find gibbon)/config/l2_dr.yaml" ns="gibbon_joint_l2_dr" />
+  <node name="r2d2_controller_spawner" pkg="controller_manager" type="spawner"
+    args="gibbon_joint_state_controller
+          gibbon_joint_drive
+          gibbon_joint_l1_dl
+          gibbon_joint_l1_dr
+          gibbon_joint_l2_dl
+          gibbon_joint_l2_dr
+    "/>
+  <!-- CONTROL -->
 
 </launch>
