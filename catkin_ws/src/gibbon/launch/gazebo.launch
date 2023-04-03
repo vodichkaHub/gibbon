@@ -21,20 +21,28 @@
 
   <param name="robot_description" command="$(find xacro)/xacro $(arg gibbon_model)" />
 
-  <!-- push robot_description to factory and spawn robot in gazebo -->
+<!-- HANGING -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-z 1.93 -Y 1.57 -urdf -model gibbon -param robot_description
-              -J link_1__link_2 1.57
-              -J link_1_left_gripper_joint 0.15
-              -J link_1_right_gripper_joint 0.15"
+        args="-z 1.94 -Y 1.57 -urdf -model gibbon -param robot_description
+              -J link_1__link_2 0
+              -J link_1_left_gripper_joint 0.05
+              -J link_1_right_gripper_joint 0.05"
               respawn="false" output="screen" />
+
+<!-- ON THE FLOOR -->
+  <!-- <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        args="-z 0.1 -R 1.57 -P 1.57 -urdf -model gibbon -param robot_description
+              -J link_1__link_2 0
+              -J link_1_left_gripper_joint 0.00
+              -J link_1_right_gripper_joint 0.00"
+              respawn="false" output="screen" /> -->
 
   <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="30.0" />
   </node>
 
   <node pkg="tf" type="static_transform_publisher" name="map_broadcaster" args="0 0 0 0 0 0 1 map base_link 100" />
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" /> -->
 
 
   <!-- CONTROL -->
@@ -44,7 +52,7 @@
   <rosparam command="load" file="$(find gibbon)/config/l1_dr.yaml" ns="gibbon_joint_l1_dr" />
   <rosparam command="load" file="$(find gibbon)/config/l2_dl.yaml" ns="gibbon_joint_l2_dl" />
   <rosparam command="load" file="$(find gibbon)/config/l2_dr.yaml" ns="gibbon_joint_l2_dr" />
-  <node name="r2d2_controller_spawner" pkg="controller_manager" type="spawner"
+  <node name="gibbon_controller_spawner" pkg="controller_manager" type="spawner"
     args="gibbon_joint_state_controller
           gibbon_joint_drive
           gibbon_joint_l1_dl
