@@ -1,0 +1,7 @@
+<launch>
+    <arg name="topic_position_target" default="/gibbon_joint_drive/command"/>
+
+    <node name="gibbon_control" pkg="control" type="control_node">
+        <param name="topic_position_target" value="$(arg topic_position_target)" />
+    </node>
+</launch>
