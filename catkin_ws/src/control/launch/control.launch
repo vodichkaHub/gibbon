@@ -1,7 +1,15 @@
 <launch>
-    <arg name="topic_position_target" default="/gibbon_joint_drive/command"/>
+    <arg name="topic_position_target_drive" default="/gibbon/joint_drive/command"/>
+    <arg name="topic_position_target_l1_dl" default="/gibbon/joint_l1_dl/command"/>
+    <arg name="topic_position_target_l1_dr" default="/gibbon/joint_l1_dr/command"/>
+    <arg name="topic_position_target_l2_dl" default="/gibbon/joint_l2_dl/command"/>
+    <arg name="topic_position_target_l2_dr" default="/gibbon/joint_l2_dr/command"/>
 
-    <node name="gibbon_control" pkg="control" type="control_node">
-        <param name="topic_position_target" value="$(arg topic_position_target)" />
+    <node name="gibbon_control" pkg="control" type="control_node" ns="/gibbon">
+        <param name="topic_position_target_drive" value="$(arg topic_position_target_drive)" />
+        <param name="topic_position_target_l1_dl" value="$(arg topic_position_target_l1_dl)" />
+        <param name="topic_position_target_l1_dr" value="$(arg topic_position_target_l1_dr)" />
+        <param name="topic_position_target_l2_dl" value="$(arg topic_position_target_l2_dl)" />
+        <param name="topic_position_target_l2_dr" value="$(arg topic_position_target_l2_dr)" />
     </node>
 </launch>

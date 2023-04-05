@@ -12,14 +12,24 @@ int main(int argc, char **argv)
     ros::NodeHandle nhp("~");
     gibbon::ParamsManager params(boost::make_shared<ros::NodeHandle>(nhp));
 
-    ros::Publisher position_target(nh.advertise<std_msgs::Float64>(params.getControlTopic(), 1, true));
+    ros::Publisher pos_target_drive(nh.advertise<std_msgs::Float64>(params.getControlTopicDrive(), 1, true));
+    ros::Publisher pos_target_l1_dl(nh.advertise<std_msgs::Float64>(params.getControlTopicl1dl(), 1, true));
+    ros::Publisher pos_target_l1_dr(nh.advertise<std_msgs::Float64>(params.getControlTopicl1dr(), 1, true));
+    ros::Publisher pos_target_l2_dl(nh.advertise<std_msgs::Float64>(params.getControlTopicl2dl(), 1, true));
+    ros::Publisher pos_target_l2_dr(nh.advertise<std_msgs::Float64>(params.getControlTopicl2dr(), 1, true));
 
     ros::Rate loop_r(10);
+    std_msgs::Float64 command_sin;
+    std_msgs::Float64 command_zero;
+    command_zero.data = 0.;
     while (ros::ok())
     {
-        std_msgs::Float64 g;
-        g.data = std::sin(ros::Time::now().toSec());
-        position_target.publish(g);
+        command_sin.data = std::sin(ros::Time::now().toSec());
+        pos_target_drive.publish(command_sin);
+        pos_target_l1_dl.publish(command_zero);
+        pos_target_l1_dr.publish(command_zero);
+        pos_target_l2_dl.publish(command_zero);
+        pos_target_l2_dr.publish(command_zero);
 
         ros::spinOnce();
         loop_r.sleep();
