@@ -25,8 +25,8 @@
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
         args="-z 1.94 -Y 1.57 -urdf -model gibbon -param robot_description
               -J link_1__link_2 0
-              -J link_1_left_gripper_joint 0.05
-              -J link_1_right_gripper_joint 0.05"
+              -J link_1_left_gripper_joint 0.00
+              -J link_1_right_gripper_joint 0.00"
               respawn="false" output="screen" />
 
 <!-- ON THE FLOOR -->
@@ -39,6 +39,7 @@
 
   <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="30.0" />
+    <remap from="/joint_states" to="/gibbon/joint_states"/>
   </node>
 
   <node pkg="tf" type="static_transform_publisher" name="map_broadcaster" args="0 0 0 0 0 0 1 map base_link 100" />
@@ -46,19 +47,16 @@
 
 
   <!-- CONTROL -->
-  <rosparam command="load" file="$(find gibbon)/config/joints.yaml" ns="gibbon_joint_state_controller" />
-  <rosparam command="load" file="$(find gibbon)/config/drive.yaml" ns="gibbon_joint_drive" />
-  <rosparam command="load" file="$(find gibbon)/config/l1_dl.yaml" ns="gibbon_joint_l1_dl" />
-  <rosparam command="load" file="$(find gibbon)/config/l1_dr.yaml" ns="gibbon_joint_l1_dr" />
-  <rosparam command="load" file="$(find gibbon)/config/l2_dl.yaml" ns="gibbon_joint_l2_dl" />
-  <rosparam command="load" file="$(find gibbon)/config/l2_dr.yaml" ns="gibbon_joint_l2_dr" />
+  <rosparam command="load" file="$(find gibbon)/config/joints.yaml" ns="/gibbon" />
+  <rosparam command="load" file="$(find gibbon)/config/drive.yaml" ns="/gibbon" />
   <node name="gibbon_controller_spawner" pkg="controller_manager" type="spawner"
-    args="gibbon_joint_state_controller
-          gibbon_joint_drive
-          gibbon_joint_l1_dl
-          gibbon_joint_l1_dr
-          gibbon_joint_l2_dl
-          gibbon_joint_l2_dr
+    ns="/gibbon"
+    args="joint_state_controller
+          joint_drive
+          joint_l1_dl
+          joint_l1_dr
+          joint_l2_dl
+          joint_l2_dr
     "/>
   <!-- CONTROL -->
 

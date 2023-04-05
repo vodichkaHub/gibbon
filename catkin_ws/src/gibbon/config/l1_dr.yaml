@@ -1,2 +1,0 @@
-type: "position_controllers/JointPositionController"
-joint: link_1_right_gripper_joint
