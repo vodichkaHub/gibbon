@@ -39,7 +39,7 @@
 
   <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="30.0" />
-    <remap from="/joint_states" to="/gibbon/joint_states"/>
+    <!-- <remap from="/joint_states" to="/gibbon/joint_states"/> -->
   </node>
 
   <node pkg="tf" type="static_transform_publisher" name="map_broadcaster" args="0 0 0 0 0 0 1 map base_link 100" />
