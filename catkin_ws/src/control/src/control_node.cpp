@@ -3,7 +3,7 @@
 #include "ros/ros.h"
 #include "std_msgs/Float64.h"
 
-#include "../include/params_manager.h"
+#include "../include/control/ParamsManager.h"
 
 int main(int argc, char **argv)
 {
