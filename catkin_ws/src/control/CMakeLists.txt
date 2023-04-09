@@ -9,6 +9,9 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
+find_package(Boost REQUIRED)
+find_package(Eigen3 REQUIRED)
+
 ## Generate messages in the 'msg' folder
 # add_message_files(
 #   FILES
