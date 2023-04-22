@@ -32,11 +32,12 @@ catkin_package(
 )
 
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(${PROJECT_NAME}_node src/control_node.cpp)
+file(GLOB_RECURSE SOURCES_FILES src/*.cpp)
+add_executable(${PROJECT_NAME}_node ${SOURCES_FILES})
 
 # set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
 
