@@ -5,6 +5,8 @@
     <arg name="topic_position_target_l2_dl" default="/gibbon/joint_l2_dl/command"/>
     <arg name="topic_position_target_l2_dr" default="/gibbon/joint_l2_dr/command"/>
 
+    <param name="/use_sim_time" value="true"/>
+
     <node name="gibbon_control" pkg="control" type="control_node" ns="/gibbon" output="screen">
         <param name="topic_position_target_drive" value="$(arg topic_position_target_drive)" />
         <param name="topic_position_target_l1_dl" value="$(arg topic_position_target_l1_dl)" />
