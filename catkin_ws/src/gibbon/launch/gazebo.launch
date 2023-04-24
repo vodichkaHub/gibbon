@@ -6,7 +6,7 @@
   <arg name="headless" default="false"/>
   <arg name="debug" default="false"/>
   <arg name="gibbon_model" default="$(find gibbon)/urdf/gibbon.xacro"/>
-  <arg name="ladder_file" default="$(find gibbon)/urdf/ladder.sdf"/>
+  <arg name="ladder_file" default="$(find gibbon)/urdf/models/ladder.sdf"/>
   <arg name="rvizconfig" default="$(find gibbon)/rviz/basic.rviz"/>
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
