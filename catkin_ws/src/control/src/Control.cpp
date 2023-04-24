@@ -15,7 +15,7 @@ namespace gibbon
     {
     }
 
-    const gm::_state_t Control::step_ode(gm::_state_t x0)
+    const pair<ros::Time, gm::_state_t> Control::step_ode(gm::_state_t x0)
     {
         if (std::isnan(x0.at(0)))
             x0 = {0., 0., 0., 0.};
@@ -23,14 +23,14 @@ namespace gibbon
         gm::_state_t res_state;
         vector<double> res_time;
 
-        const double cur_time(ros::Time::now().toSec());
+        const auto cur_time(ros::Time::now());
 
         runge_kutta4<gm::_state_t> stepper;
         const double dt = 1. / _hz;
-        stepper.do_step(*_m, x0, cur_time, dt);
+        stepper.do_step(*_m, x0, cur_time.toSec(), dt);
 
-        _prev_time = ros::Time::now().toSec();
-        return x0;
+        // _prev_time = ros::Time::now().toSec();
+        return make_pair(cur_time, x0);
         // x0 = {modPI(x0.at(0)), modPI(x0.at(1)), x0.at(2), x0.at(3)};
     }
 

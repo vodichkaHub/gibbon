@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ros/ros.h"
 #include "Model.h"
 #include <memory>
 
@@ -35,7 +36,7 @@ namespace gibbon
 
         ~Control();
 
-        const gm::_state_t step_ode(gm::_state_t x0 = {std::nan("")});
+        const pair<ros::Time, gm::_state_t> step_ode(gm::_state_t x0 = {std::nan("")});
         const vector<gm::_state_t> integrate_ode(gm::_state_t x0 = {std::nan("")});
     };
 

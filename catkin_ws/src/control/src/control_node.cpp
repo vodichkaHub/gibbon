@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "ros/ros.h"
+#include "std_msgs/Header.h"
 #include "std_msgs/Float64.h"
 #include "std_msgs/Float64MultiArray.h"
 
@@ -21,6 +21,7 @@ int main(int argc, char **argv)
     ros::Publisher pos_target_l2_dl(nh.advertise<std_msgs::Float64>(params.getControlTopicl2dl(), 1, true));
     ros::Publisher pos_target_l2_dr(nh.advertise<std_msgs::Float64>(params.getControlTopicl2dr(), 1, true));
     ros::Publisher test1(nh.advertise<std_msgs::Float64MultiArray>("test1", 1, true));
+    ros::Publisher test2(nh.advertise<std_msgs::Header>("test2", 1, true));
 
     const double hz = 1 / 1e-03;
 
@@ -32,22 +33,32 @@ int main(int argc, char **argv)
     std_msgs::Float64 command_zero;
     command_zero.data = 0.;
 
-    gm::_state_t prev_state{0.1, 0, 0, 0};
+    gm::_state_t prev_state{0, 0.1, 0, 0};
 
     while (ros::ok())
     {
+        if (ros::Time::now().is_zero())
+        {
+            loop_r.sleep();
+            continue;
+        }
+
         std_msgs::Float64MultiArray t1;
+        std_msgs::Header t2;
 
         const auto int_step(proccess.step_ode(prev_state));
-        prev_state = int_step;
-        if (int_step.at(2) > 20. || int_step.at(3) > 20. || std::isnan(int_step.at(2)) || std::isnan(int_step.at(3)))
+        prev_state = int_step.second;
+        if (int_step.second.at(2) > 20. || int_step.second.at(3) > 20. || std::isnan(int_step.second.at(2)) || std::isnan(int_step.second.at(3)))
             throw std::runtime_error("Velosity has blown");
 
-        t1.data.push_back(int_step.at(0));
-        t1.data.push_back(int_step.at(1));
-        t1.data.push_back(int_step.at(2));
-        t1.data.push_back(int_step.at(3));
+        t1.data.push_back(int_step.second.at(0));
+        t1.data.push_back(int_step.second.at(1));
+        t1.data.push_back(int_step.second.at(2));
+        t1.data.push_back(int_step.second.at(3));
         test1.publish(t1);
+
+        t2.stamp = int_step.first;
+        test2.publish(t2);
 
         // command_sin.data = std::sin(ros::Time::now().toSec());
         // pos_target_drive.publish(command_sin);
