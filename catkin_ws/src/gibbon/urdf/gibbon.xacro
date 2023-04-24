@@ -68,8 +68,10 @@
     <joint name="link_1__link_2" type="revolute">
       <parent link="link_1"/>
       <child link="link_2"/>
-      <limit effort="100000.0" lower="${-pi}" upper="${pi}" velocity="3.14"/>
+      <limit effort="0.0" lower="${-pi}" upper="${pi}" velocity="0.0"/>
       <origin rpy="0 0 0" xyz="${arm_radius} 0 -${arm_len}"/>
+      <!-- <dynamics damping="0.001"/> -->
+      <dynamics friction="0.1"/>
     </joint>
     <transmission name="link_1__link_2_trans">
       <type>transmission_interface/SimpleTransmission</type>
