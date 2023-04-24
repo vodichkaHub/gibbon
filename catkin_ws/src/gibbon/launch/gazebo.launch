@@ -1,6 +1,6 @@
 <launch>
   <!-- these are the arguments you can pass this launch file, for example paused:=true -->
-  <arg name="paused" default="true"/>
+  <arg name="paused" default="false"/>
   <arg name="use_sim_time" default="true"/>
   <arg name="gui" default="true"/>
   <arg name="headless" default="false"/>
@@ -23,8 +23,8 @@
 
 <!-- HANGING -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-z 1.94 -Y 1.57 -urdf -model gibbon -param robot_description
-              -J link_1__link_2 0
+        args="-z 2.91 -Y 1.57 -urdf -model gibbon -param robot_description
+              -J link_1__link_2 1.5
               -J link_1_left_gripper_joint 0.00
               -J link_1_right_gripper_joint 0.00"
               respawn="false" output="screen" />
@@ -37,14 +37,7 @@
               -J link_1_right_gripper_joint 0.00"
               respawn="false" output="screen" /> -->
 
-  <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
-    <param name="publish_frequency" type="double" value="30.0" />
-    <remap from="/joint_states" to="/gibbon/joint_states"/>
-  </node>
-
-  <node pkg="tf" type="static_transform_publisher" name="map_broadcaster" args="0 0 0 0 0 0 1 map base_link 100" />
-  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" /> -->
-
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
 
   <!-- CONTROL -->
   <rosparam command="load" file="$(find gibbon)/config/joints.yaml" ns="/gibbon" />

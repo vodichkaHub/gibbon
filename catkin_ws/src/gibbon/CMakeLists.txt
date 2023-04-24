@@ -5,6 +5,8 @@ add_compile_options(-std=c++17)
 
 find_package(catkin REQUIRED COMPONENTS
   std_msgs
+  gazebo2rviz
+  pysdf
 )
 
 ## Generate messages in the 'msg' folder
