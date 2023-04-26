@@ -68,19 +68,18 @@
     <joint name="link_1__link_2" type="revolute">
       <parent link="link_1"/>
       <child link="link_2"/>
-      <limit effort="0.0" lower="${-pi}" upper="${pi}" velocity="0.0"/>
+      <limit effort="10000.0" lower="${-pi}" upper="${pi}" velocity="0.0"/>
       <origin rpy="0 0 0" xyz="${arm_radius} 0 -${arm_len}"/>
-      <!-- <dynamics damping="0.001"/> -->
-      <dynamics friction="0.1"/>
+      <dynamics friction="0" damping="0.001"/>
     </joint>
     <transmission name="link_1__link_2_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <actuator name="$link_1__link_2_motor">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
       <joint name="link_1__link_2">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>
     </transmission>
 
