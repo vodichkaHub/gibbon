@@ -20,7 +20,7 @@
     <xacro:macro name="arm_inertial" params="mass len">
       <inertial>
         <mass value="${mass}" />
-        <inertia ixx="${1.0 / 3.0 * mass * len * len}" ixy="0.0" ixz="0.0" iyy="${1.0 / 3.0 * mass * len * len}" iyz="0.0" izz="0.0" />
+        <inertia ixx="${1.0 / 3.0 * mass * len * len}" ixy="0.0" ixz="0.0" iyy="0" iyz="0.0" izz="0.0" />
       </inertial>
     </xacro:macro>
 
