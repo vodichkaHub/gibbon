@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name='gibbon'>
 
     <xacro:property name="arm_radius" value="0.01" />
-    <xacro:property name="arm_len" value="1" />
+    <xacro:property name="arm_len" value="0.7" />
     <xacro:property name="arm_mass" value="1.0" />
     <xacro:property name="width" value="0.2" />
     <xacro:property name="polelen" value="0.0" />
@@ -68,7 +68,7 @@
     <joint name="link_1__link_2" type="revolute">
       <parent link="link_1"/>
       <child link="link_2"/>
-      <limit effort="10000.0" lower="${-pi}" upper="${pi}" velocity="0.0"/>
+      <limit effort="10000.0" lower="${-pi}" upper="${pi}" velocity="10.0"/>
       <origin rpy="0 0 0" xyz="${arm_radius} 0 -${arm_len}"/>
       <dynamics friction="0" damping="0.001"/>
     </joint>
