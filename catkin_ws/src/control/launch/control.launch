@@ -5,8 +5,9 @@
     <arg name="topic_position_target_l2_dl" default="/gibbon/joint_l2_dl/command"/>
     <arg name="topic_position_target_l2_dr" default="/gibbon/joint_l2_dr/command"/>
     <arg name="topic_joint_state" default="/gibbon/joint_states"/>
+    <arg name="topic_link_state" default="/gazebo/link_states"/>
 
-    <param name="/use_sim_time" value="false"/>
+    <!-- <param name="/use_sim_time" value=""/> -->
 
     <node name="gibbon_control" pkg="control" type="control_node" ns="/gibbon" output="screen">
         <param name="topic_position_target_drive" value="$(arg topic_position_target_drive)" />
@@ -14,5 +15,6 @@
         <param name="topic_position_target_l1_dr" value="$(arg topic_position_target_l1_dr)" />
         <param name="topic_position_target_l2_dl" value="$(arg topic_position_target_l2_dl)" />
         <param name="topic_joint_state" value="$(arg topic_joint_state)" />
+        <param name="topic_link_state" value="$(arg topic_link_state)" />
     </node>
 </launch>

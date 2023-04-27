@@ -19,6 +19,7 @@ namespace gibbon
             std::string topic_pos_target_l2_dl = "control4";
             std::string topic_pos_target_l2_dr = "control5";
             std::string topic_joint_state = "joint_state";
+            std::string topic_link_state = "link_state";
         };
         using _params_ptr_t = std::shared_ptr<_params_t>;
 
@@ -37,6 +38,7 @@ namespace gibbon
         inline const std::string getControlTopicl2dl() const { return _data->topic_pos_target_l2_dl; };
         inline const std::string getControlTopicl2dr() const { return _data->topic_pos_target_l2_dr; };
         inline const std::string getSensorJointState() const { return _data->topic_joint_state; };
+        inline const std::string getSensorLinkState() const { return _data->topic_link_state; };
 
         inline void read()
         {
