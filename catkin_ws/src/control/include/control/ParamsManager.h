@@ -48,6 +48,7 @@ namespace gibbon
             _nhp->getParam("topic_position_target_l2_dl", _data->topic_pos_target_l2_dl);
             _nhp->getParam("topic_position_target_l2_dr", _data->topic_pos_target_l2_dr);
             _nhp->getParam("topic_joint_state", _data->topic_joint_state);
+            _nhp->getParam("topic_link_state", _data->topic_link_state);
         };
 
     private:
