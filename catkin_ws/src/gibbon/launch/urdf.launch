@@ -3,7 +3,7 @@
     <arg name="rvizconfig" default="$(find gibbon)/rviz/basic.rviz"/>
     <arg name="gui" default="true" />
 
-    <node pkg="tf" type="static_transform_publisher" name="map_broadcaster" args="0 0 0 0 0 0 1 map base_link 100" />
+    <node pkg="tf" type="static_transform_publisher" name="map_broadcaster" args="0 0 0 0 0 0 1 world base_link 100" />
     <param name="robot_description" command="$(find xacro)/xacro $(arg gibbon_model)" />
 
     <node if="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />

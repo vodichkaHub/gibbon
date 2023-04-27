@@ -28,7 +28,7 @@
     <joint name="base_link__link_1" type="fixed">
       <parent link="base_link"/>
       <child link="link_1"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.1"/>
     </joint>
 
     <link name='link_1'>

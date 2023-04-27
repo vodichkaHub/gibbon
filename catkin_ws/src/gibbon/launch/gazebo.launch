@@ -23,8 +23,8 @@
 
 <!-- HANGING -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-z 2.91 -Y 1.57 -urdf -model gibbon -param robot_description
-              -J link_1__link_2 1.5
+        args="-z 3.01 -Y 1.57 -urdf -model gibbon -param robot_description
+              -J link_1__link_2 1.4
               -J link_1_left_gripper_joint 0.00
               -J link_1_right_gripper_joint 0.00"
               respawn="false" output="screen" />
@@ -42,7 +42,7 @@
   <!-- CONTROL -->
   <rosparam command="load" file="$(find gibbon)/config/joints.yaml" ns="/gibbon" />
   <rosparam command="load" file="$(find gibbon)/config/drive.yaml" ns="/gibbon" />
-  <node name="gibbon_controller_spawner" pkg="controller_manager" type="spawner"
+  <node name="gibbon_controller_spawner" pkg="controller_manager" type="spawner" output="screen"
     ns="/gibbon"
     args="joint_state_controller
           joint_drive
