@@ -22,7 +22,9 @@ namespace gibbon
 
     private:
         double g, l1, lc1, l2, lc2, m1, m2, I1, I2, damp;
+        double _u;
 
+    public:
         inline const Matrix2 M(const Vector2 &state) const
         {
             Matrix2 temp;
@@ -57,19 +59,22 @@ namespace gibbon
                 m2 * g * lc2 * sin(state.x() + state.y()));
         };
 
-    public:
+        inline void setU(const double &input) { _u = input; };
+
         Model()
         {
             g = 9.8;
-            l1 = 1.;
+            l1 = 0.7;
             lc1 = l1 / 2.;
-            l2 = 1.;
+            l2 = 0.7;
             lc2 = l2 / 2.;
             m1 = 1.;
             m2 = 1.;
             I1 = 1. / 3. * m1 * l1 * l1;
             I2 = 1. / 3. * m2 * l2 * l2;
-            damp = 5.;
+            damp = 0.001;
+
+            _u = 0.;
         };
 
         ~Model(){};
@@ -85,9 +90,9 @@ namespace gibbon
             // if (x.at(2) > 100. || x.at(3) > 100. || std::isnan(x.at(2)) || std::isnan(x.at(3)))
             //     throw std::runtime_error("Velosity has blown");
 
-            const auto inv_M(M(x_c).inverse().eval());
+            const auto inv_M(M(x_c).inverse());
 
-            const auto x3x4(inv_M * (Vector2(0, 1) * 0. - C(x_vec) * x_v - G(x_c) - damp * x_v));
+            const auto x3x4(inv_M * (Vector2(0, 1) * _u - C(x_vec) * x_v - G(x_c) - damp * x_v));
             dxdt[0] = x[2];
             dxdt[1] = x[3];
             dxdt[2] = x3x4.eval().x();
