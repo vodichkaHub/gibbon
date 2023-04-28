@@ -1,28 +1,28 @@
-<sdf version='1.6'>
+<sdf version='1.7'>
   <model name='gibbon'>
-    <link name='base_link'>
+    <link name='link_1'>
       <inertial>
         <pose>0 0 0 0 -0 0</pose>
-        <mass>1.001</mass>
+        <mass>1.00001</mass>
         <inertia>
-          <ixx>1.33333</ixx>
+          <ixx>1.16333</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>1.33333</iyy>
+          <iyy>1</iyy>
           <iyz>0</iyz>
           <izz>1</izz>
         </inertia>
       </inertial>
-      <collision name='base_link_fixed_joint_lump__link_1_collision'>
-        <pose>0 0 -0.5 0 -0 0</pose>
+      <collision name='link_1_collision'>
+        <pose>0 0 -0.35 0 -0 0</pose>
         <geometry>
           <cylinder>
-            <length>1</length>
+            <length>0.7</length>
             <radius>0.01</radius>
           </cylinder>
         </geometry>
       </collision>
-      <collision name='base_link_fixed_joint_lump__link_1_gripper_pole_collision_1'>
+      <collision name='link_1_gripper_pole_collision_1'>
         <pose>0 0 0 0 -1.5708 0</pose>
         <geometry>
           <cylinder>
@@ -31,16 +31,16 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name='base_link_fixed_joint_lump__link_1_visual'>
-        <pose>0 0 -0.5 0 -0 0</pose>
+      <visual name='link_1_visual'>
+        <pose>0 0 -0.35 0 -0 0</pose>
         <geometry>
           <cylinder>
-            <length>1</length>
+            <length>0.7</length>
             <radius>0.01</radius>
           </cylinder>
         </geometry>
       </visual>
-      <visual name='base_link_fixed_joint_lump__link_1_gripper_pole_visual_1'>
+      <visual name='link_1_gripper_pole_visual_1'>
         <pose>0 0 0 0 -1.5708 0</pose>
         <geometry>
           <cylinder>
@@ -51,8 +51,8 @@
       </visual>
     </link>
     <joint name='link_1_left_gripper_joint' type='revolute'>
-      <pose relative_to='base_link'>0 0.01 0 0 -1.5708 0</pose>
-      <parent>base_link</parent>
+      <pose relative_to='link_1'>0 0.01 0 0 -1.5708 0</pose>
+      <parent>link_1</parent>
       <child>link_1_left_gripper</child>
       <axis>
         <xyz>0 0 1</xyz>
@@ -116,8 +116,8 @@
       </visual>
     </link>
     <joint name='link_1_right_gripper_joint' type='revolute'>
-      <pose relative_to='base_link'>0 -0.01 0 0 -1.5708 0</pose>
-      <parent>base_link</parent>
+      <pose relative_to='link_1'>0 -0.01 0 0 -1.5708 0</pose>
+      <parent>link_1</parent>
       <child>link_1_right_gripper</child>
       <axis>
         <xyz>0 0 -1</xyz>
@@ -180,21 +180,54 @@
         </geometry>
       </visual>
     </link>
+    <joint name='link_1__link_1_tip' type='revolute'>
+      <pose relative_to='link_1'>0 0 0.1 0 -0 0</pose>
+      <parent>link_1</parent>
+      <child>link_1_tip</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='link_1_tip'>
+      <pose relative_to='link_1__link_1_tip'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>1e-05</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+    </link>
     <joint name='link_1__link_2' type='revolute'>
-      <pose relative_to='base_link'>0.01 0 -1 0 -0 0</pose>
-      <parent>base_link</parent>
+      <pose relative_to='link_1'>0.01 0 -0.7 3.14159 -0 0</pose>
+      <parent>link_1</parent>
       <child>link_2</child>
       <axis>
         <xyz>1 0 0</xyz>
         <limit>
           <lower>-3.14159</lower>
           <upper>3.14159</upper>
-          <effort>0</effort>
-          <velocity>0</velocity>
+          <effort>10000</effort>
+          <velocity>10</velocity>
         </limit>
         <dynamics>
-          <damping>0</damping>
-          <friction>0.1</friction>
+          <damping>0.001</damping>
+          <friction>0</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -203,28 +236,28 @@
     <link name='link_2'>
       <pose relative_to='link_1__link_2'>0 0 0 0 -0 0</pose>
       <inertial>
-        <pose>2e-05 0 -0.000999 0 -0 0</pose>
-        <mass>1.001</mass>
+        <pose>0 0 7e-06 0 -0 0</pose>
+        <mass>1.00001</mass>
         <inertia>
-          <ixx>1.33433</ixx>
+          <ixx>1.16334</ixx>
           <ixy>0</ixy>
-          <ixz>1.998e-05</ixz>
-          <iyy>1.33433</iyy>
+          <ixz>-1.39999e-07</ixz>
+          <iyy>1</iyy>
           <iyz>0</iyz>
           <izz>1</izz>
         </inertia>
       </inertial>
       <collision name='link_2_collision'>
-        <pose>0.02 0 -0.5 0 -0 0</pose>
+        <pose>0.02 0 0.35 0 -0 0</pose>
         <geometry>
           <cylinder>
-            <length>1</length>
+            <length>0.7</length>
             <radius>0.01</radius>
           </cylinder>
         </geometry>
       </collision>
       <collision name='link_2_gripper_pole_collision_1'>
-        <pose>0.02 0 -1 0 1.5708 0</pose>
+        <pose>0.02 0 0.7 0 -1.5708 0</pose>
         <geometry>
           <cylinder>
             <length>0</length>
@@ -233,16 +266,16 @@
         </geometry>
       </collision>
       <visual name='link_2_visual'>
-        <pose>0.02 0 -0.5 0 -0 0</pose>
+        <pose>0.02 0 0.35 0 -0 0</pose>
         <geometry>
           <cylinder>
-            <length>1</length>
+            <length>0.7</length>
             <radius>0.01</radius>
           </cylinder>
         </geometry>
       </visual>
       <visual name='link_2_gripper_pole_visual_1'>
-        <pose>0.02 0 -1 0 1.5708 0</pose>
+        <pose>0.02 0 0.7 0 -1.5708 0</pose>
         <geometry>
           <cylinder>
             <length>0</length>
@@ -252,7 +285,7 @@
       </visual>
     </link>
     <joint name='link_2_left_gripper_joint' type='revolute'>
-      <pose relative_to='link_2'>0.02 0.01 -1 0 1.5708 0</pose>
+      <pose relative_to='link_2'>0.02 0.01 0.7 0 -1.5708 0</pose>
       <parent>link_2</parent>
       <child>link_2_left_gripper</child>
       <axis>
@@ -317,7 +350,7 @@
       </visual>
     </link>
     <joint name='link_2_right_gripper_joint' type='revolute'>
-      <pose relative_to='link_2'>0.02 -0.01 -1 0 1.5708 0</pose>
+      <pose relative_to='link_2'>0.02 -0.01 0.7 0 -1.5708 0</pose>
       <parent>link_2</parent>
       <child>link_2_right_gripper</child>
       <axis>
@@ -380,6 +413,39 @@
           </box>
         </geometry>
       </visual>
+    </link>
+    <joint name='link_2__link_2_tip' type='revolute'>
+      <pose relative_to='link_2'>0.02 0 0.8 0 -0 0</pose>
+      <parent>link_2</parent>
+      <child>link_2_tip</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='link_2_tip'>
+      <pose relative_to='link_2__link_2_tip'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>1e-05</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
     </link>
     <static>0</static>
     <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
