@@ -1,13 +1,17 @@
 #pragma once
 
 #include <deque>
+#include <memory>
 
+#include "Eigen/Geometry"
 #include "ros/ros.h"
-#include <tf2_ros/transform_listener.h>
+#include "std_msgs/Float64.h"
 #include "sensor_msgs/JointState.h"
 #include "gazebo_msgs/LinkStates.h"
+
+#include <tf2_ros/transform_listener.h>
+
 #include "Model.h"
-#include <memory>
 
 using namespace std;
 using gm = gibbon::Model;
@@ -75,6 +79,13 @@ namespace gibbon
         void linkStateCallback(gazebo_msgs::LinkStatesConstPtr state);
 
         inline const double calcReferenceQ2() const { return 0.52 * atan(_dq.x()); };
+
+        const int switchArm() const;
+
+        inline const bool gp_l1_closed() const { return fabs(_gp_states.x()) < 1e-02 && fabs(_gp_states.y()) < 1e-02; };
+        inline const bool gp_l2_closed() const { return fabs(_gp_states.z()) < 1e-02 && fabs(_gp_states.w()) < 1e-02; };
+        static const std_msgs::Float64 getGPCloseCommand();
+        static const std_msgs::Float64 getGPOpenCommand();
 
         const bool fb_ready() const { return _fb1 && _fb2; };
     };

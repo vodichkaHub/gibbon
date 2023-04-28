@@ -6,9 +6,10 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /GibbonModel1
         - /TF1
         - /TF1/Frames1
-      Splitter Ratio: 0.5
+      Splitter Ratio: 0.5653104782104492
     Tree Height: 679
   - Class: rviz/Selection
     Name: Selection
@@ -56,18 +57,66 @@ Visualization Manager:
     - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
-      Enabled: false
+      Enabled: true
       Links:
         All Links Enabled: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_1_gripper_pole:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_1_left_gripper:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_1_right_gripper:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_1_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_2_gripper_pole:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_2_left_gripper:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_2_right_gripper:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_2_tip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
       Name: GibbonModel
       Robot Description: robot_description
       TF Prefix: ""
       Update Interval: 0
-      Value: false
+      Value: true
       Visual Enabled: true
     - Class: rviz/TF
       Enabled: true
@@ -78,27 +127,31 @@ Visualization Manager:
         All Enabled: false
         gazebo_world:
           Value: false
-        gibbon__base_link:
+        link:
           Value: true
-        gibbon__link_1_left_gripper:
-          Value: false
-        gibbon__link_1_right_gripper:
-          Value: false
-        gibbon__link_2:
+        link_0:
           Value: true
-        gibbon__link_2_left_gripper:
-          Value: false
-        gibbon__link_2_right_gripper:
-          Value: false
-        ground_plane__link:
-          Value: false
-        ladder__link_0:
-          Value: false
-        ladder__link_0_clone:
+        link_0_clone:
           Value: true
-        ladder__link_0_clone_clone:
+        link_0_clone_clone:
           Value: true
-        ladder__link_0_clone_clone_0:
+        link_0_clone_clone_0:
+          Value: true
+        link_1:
+          Value: false
+        link_1_left_gripper:
+          Value: false
+        link_1_right_gripper:
+          Value: false
+        link_1_tip:
+          Value: true
+        link_2:
+          Value: true
+        link_2_left_gripper:
+          Value: false
+        link_2_right_gripper:
+          Value: false
+        link_2_tip:
           Value: true
         world:
           Value: true
@@ -111,27 +164,31 @@ Visualization Manager:
       Tree:
         world:
           gazebo_world:
-            gibbon__base_link:
+            link:
               {}
-            gibbon__link_1_left_gripper:
+            link_0:
               {}
-            gibbon__link_1_right_gripper:
+            link_0_clone:
               {}
-            gibbon__link_2:
+            link_0_clone_clone:
               {}
-            gibbon__link_2_left_gripper:
+            link_0_clone_clone_0:
               {}
-            gibbon__link_2_right_gripper:
+            link_1:
               {}
-            ground_plane__link:
+            link_1_left_gripper:
               {}
-            ladder__link_0:
+            link_1_right_gripper:
               {}
-            ladder__link_0_clone:
+            link_1_tip:
               {}
-            ladder__link_0_clone_clone:
+            link_2:
               {}
-            ladder__link_0_clone_clone_0:
+            link_2_left_gripper:
+              {}
+            link_2_right_gripper:
+              {}
+            link_2_tip:
               {}
       Update Interval: 0
       Value: true
@@ -140,7 +197,7 @@ Visualization Manager:
       Marker Topic: /visualization_marker
       Name: VIS:gazebo2tf
       Namespaces:
-        ground_plane__link__visual: true
+        {}
       Queue Size: 100
       Value: true
   Enabled: true
@@ -171,7 +228,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 7.171605587005615
+      Distance: 8.281499862670898
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -179,17 +236,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 1.3318790197372437
-        Y: 0.491881787776947
-        Z: 1.3583264350891113
+        X: -0.8911163210868835
+        Y: -0.7051126956939697
+        Z: 1.1287047863006592
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7803981900215149
+      Pitch: 0.7503982186317444
       Target Frame: <Fixed Frame>
-      Yaw: 4.323573112487793
+      Yaw: 0.7203982472419739
     Saved: ~
 Window Geometry:
   Displays:

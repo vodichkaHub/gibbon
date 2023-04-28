@@ -18,6 +18,20 @@ namespace gibbon
     {
     }
 
+    const std_msgs::Float64 Control::getGPCloseCommand()
+    {
+        std_msgs::Float64 c;
+        c.data = 0.;
+        return c;
+    }
+
+    const std_msgs::Float64 Control::getGPOpenCommand()
+    {
+        std_msgs::Float64 c;
+        c.data = 3.;
+        return c;
+    }
+
     const int Control::findIndex(const vector<string> &ln, const string &s) const
     {
         int i = 0;
@@ -169,5 +183,22 @@ namespace gibbon
             link_1_tip_m.getRPY(r, p, y);
             _q.x() = p;
         }
+    }
+
+    const int Control::switchArm() const
+    {
+        if (gp_l1_closed())
+        {
+            cerr << distVec3(_gibbon_p.at(1), _ladder_p.at(1)) << endl
+                 << endl;
+            if (distVec3(_gibbon_p.at(1), _ladder_p.at(1)) < 0.2)
+                return 1;
+        }
+        else
+        {
+            if (distVec3(_gibbon_p.at(0), _ladder_p.at(2)) < 0.2)
+                return 2;
+        }
+        return -1;
     }
 } // namespace gibbon
