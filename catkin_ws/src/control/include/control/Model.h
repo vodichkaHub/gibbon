@@ -1,7 +1,6 @@
 #pragma once
 
 #include "iostream"
-#include <Eigen/Dense>
 #include "Math.h"
 #include "boost/array.hpp"
 
@@ -10,11 +9,6 @@ using namespace Eigen;
 
 namespace gibbon
 {
-    using Vector2 = Eigen::Matrix<double, 2, 1>;
-    using Vector4 = Eigen::Matrix<double, 4, 1>;
-    using Matrix2 = Eigen::Matrix<double, 2, 2>;
-    using Matrix4 = Eigen::Matrix<double, 4, 4>;
-
     class Model
     {
     public:
