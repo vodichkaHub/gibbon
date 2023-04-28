@@ -101,31 +101,72 @@ namespace gibbon
 
     void Control::linkStateCallback(gazebo_msgs::LinkStatesConstPtr state)
     {
-        const int dq1_ind(findIndex(state->name, "gibbon::base_link"));
-        const int dq2_ind(findIndex(state->name, "gibbon::link_2"));
-        const auto vel(state->twist);
-        _dq.x() = vel.at(dq1_ind).angular.y;
-        _dq.y() = vel.at(dq2_ind).angular.y;
+        _fb1 = true;
+
+        const int l1_tip_ind(findIndex(state->name, "gibbon::link_1_tip"));
+        const int l2_tip_ind(findIndex(state->name, "gibbon::link_2_tip"));
+        const int lad1_ind(findIndex(state->name, "ladder::link_0"));
+        const int lad2_ind(findIndex(state->name, "ladder::link_0_clone"));
+        const int lad3_ind(findIndex(state->name, "ladder::link_0_clone_clone"));
+        const int lad4_ind(findIndex(state->name, "ladder::link_0_clone_clone_0"));
+
+        auto p = state->pose.at(lad1_ind).position;
+        _ladder_p.at(0) = Vector3(p.x, p.y, p.z);
+        p = state->pose.at(lad2_ind).position;
+        _ladder_p.at(1) = Vector3(p.x, p.y, p.z);
+        p = state->pose.at(lad3_ind).position;
+        _ladder_p.at(2) = Vector3(p.x, p.y, p.z);
+        p = state->pose.at(lad4_ind).position;
+        _ladder_p.at(3) = Vector3(p.x, p.y, p.z);
+
+        p = state->pose.at(l1_tip_ind).position;
+        _gibbon_p.at(0) = Vector3(p.x, p.y, p.z);
+        p = state->pose.at(l2_tip_ind).position;
+        _gibbon_p.at(1) = Vector3(p.x, p.y, p.z);
+        auto q = state->pose.at(l1_tip_ind).orientation;
+        _gibbon_q.at(0) = Quaterniond(q.w, q.x, q.y, q.z);
+        q = state->pose.at(l2_tip_ind).orientation;
+        _gibbon_q.at(1) = Quaterniond(q.w, q.x, q.y, q.z);
+
+        auto vl = state->twist.at(l1_tip_ind).linear;
+        _gibbon_lin.at(0) = Vector3(vl.x, vl.y, vl.z);
+        vl = state->twist.at(l2_tip_ind).linear;
+        _gibbon_lin.at(1) = Vector3(vl.x, vl.y, vl.z);
+
+        auto va = state->twist.at(l1_tip_ind).angular;
+        _gibbon_ang.at(0) = Vector3(va.x, va.y, va.z);
+        va = state->twist.at(l2_tip_ind).angular;
+        _gibbon_ang.at(1) = Vector3(va.x, va.y, va.z);
+
+        _dq.x() = _gibbon_ang.at(0).y();
+        _dq.y() = _gibbon_ang.at(1).y();
     }
 
     void Control::jointStateCallback(sensor_msgs::JointStateConstPtr state)
     {
-        const double q1_pev();
-        const auto pos(state->position);
-        const auto vel(state->velocity);
-        _joint_states << pos.at(0), pos.at(1), pos.at(2), pos.at(3), pos.at(4);
-        const int q2_ind(findIndex(state->name, "link_1__link_2"));
-        _q.y() = pos.at(q2_ind);
+        _fb2 = true;
+        const int l1_l2_ind(findIndex(state->name, "link_1__link_2"));
+        const int gp_l1_l_ind(findIndex(state->name, "link_1_left_gripper_joint"));
+        const int gp_l1_r_ind(findIndex(state->name, "link_1_right_gripper_joint"));
+        const int gp_l2_l_ind(findIndex(state->name, "link_2_left_gripper_joint"));
+        const int gp_l2_r_ind(findIndex(state->name, "link_2_right_gripper_joint"));
 
-        if (_buf.canTransform("gibbon__base_link", "world", ros::Time(0)))
+        _gp_states << state->position.at(gp_l1_l_ind),
+            state->position.at(gp_l1_r_ind),
+            state->position.at(gp_l2_l_ind),
+            state->position.at(gp_l2_r_ind);
+
+        _q.y() = state->position.at(l1_l2_ind);
+
+        if (_buf.canTransform("link_1_tip", "world", ros::Time(0)))
         {
-            geometry_msgs::TransformStamped base_link_tf;
-            base_link_tf = _buf.lookupTransform("gibbon__base_link", "world", ros::Time(0));
-            tf2::Quaternion base_link_q;
-            tf2::convert(base_link_tf.transform.rotation, base_link_q);
-            tf2::Matrix3x3 base_link_m(base_link_q);
+            geometry_msgs::TransformStamped link_1_tip_tf;
+            link_1_tip_tf = _buf.lookupTransform("link_1_tip", "world", ros::Time(0));
+            tf2::Quaternion link_1_tip_q;
+            tf2::convert(link_1_tip_tf.transform.rotation, link_1_tip_q);
+            tf2::Matrix3x3 link_1_tip_m(link_1_tip_q);
             double r, p, y;
-            base_link_m.getRPY(r, p, y);
+            link_1_tip_m.getRPY(r, p, y);
             _q.x() = p;
         }
     }

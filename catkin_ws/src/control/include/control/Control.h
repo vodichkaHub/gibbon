@@ -14,7 +14,7 @@ using gm = gibbon::Model;
 
 namespace gibbon
 {
-    using Vector5 = Eigen::Matrix<double, 5, 1>;
+    using Quaterniond = Eigen::Quaternion<double>;
     struct push_back_state_and_time
     {
         vector<gm::_state_t> &m_states;
@@ -39,19 +39,23 @@ namespace gibbon
         double _Kp, _Kd;
         double _u = 0.;
 
-        Vector5 _joint_states;
+        bool _fb1 = false;
+        bool _fb2 = false;
+
+        Vector4 _gp_states;
         Vector2 _q;
         Vector2 _dq;
+
+        array<Vector3, 4> _ladder_p;
+        array<Vector3, 2> _gibbon_p;
+        array<Quaterniond, 2> _gibbon_q;
+        array<Vector3, 2> _gibbon_lin;
+        array<Vector3, 2> _gibbon_ang;
 
         tf2_ros::Buffer _buf;
         tf2_ros::TransformListener _listener;
 
         const int findIndex(const vector<string> &ln, const string &s) const;
-
-        inline const bool gp_l1_closed() const { return fabs(_joint_states(1)) < 1e-02 && fabs(_joint_states(2)) < 1e-02;};
-        inline const bool gp_l2_closed() const { return fabs(_joint_states(3)) < 1e-02 && fabs(_joint_states(4)) < 1e-02;};
-        inline const bool gp_l1_opened() const { return !gp_l1_closed();};
-        inline const bool gp_l2_opened() const { return !gp_l2_closed();};
 
     public:
         Control(const shared_ptr<Model> &m, const double hz);
@@ -71,6 +75,8 @@ namespace gibbon
         void linkStateCallback(gazebo_msgs::LinkStatesConstPtr state);
 
         inline const double calcReferenceQ2() const { return 0.52 * atan(_dq.x()); };
+
+        const bool fb_ready() const { return _fb1 && _fb2; };
     };
 
 } // namespace gibbon

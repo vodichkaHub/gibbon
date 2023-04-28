@@ -150,7 +150,7 @@
     <xacro:macro name="gripper" params="prefix reflect link_name">
       <joint name="${link_name}_${prefix}_gripper_joint" type="revolute">
         <axis xyz="0 0 ${reflect}"/>
-        <limit effort="100000.0" lower="0.0" upper="3" velocity="3.14"/>
+        <limit effort="100000.0" lower="0.0" upper="3" velocity="10"/>
         <origin rpy="0 0 0" xyz="${polelen} ${reflect*0.01} 0"/>
         <parent link="${link_name}_gripper_pole"/>
         <child link="${link_name}_${prefix}_gripper"/>
