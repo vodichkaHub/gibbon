@@ -24,12 +24,12 @@
       </inertial>
     </xacro:macro>
 
-    <link name="base_link"/>
-    <joint name="base_link__link_1" type="fixed">
+    <!-- <link name="base_link"/> -->
+    <!-- <joint name="base_link__link_1" type="fixed">
       <parent link="base_link"/>
       <child link="link_1"/>
       <origin rpy="0 0 0" xyz="0 0 -0.1"/>
-    </joint>
+    </joint> -->
 
     <link name='link_1'>
       <visual>
@@ -48,16 +48,26 @@
       <xacro:arm_inertial mass="${arm_mass}" len="${arm_len}"/>
     </link>
 
+    <link name="link_1_tip">
+      <xacro:default_inertial mass="0.00001"/>
+    </link>
+    <joint name="link_1__link_1_tip" type="revolute">
+      <parent link="link_1"/>
+      <child link="link_1_tip"/>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <limit lower="0" upper="0" effort="0" velocity="0"/>
+    </joint>
+
     <link name='link_2'>
       <visual>
-        <origin rpy="0 0 0" xyz="${arm_radius*2} 0 -${arm_len/2}"/>
+        <origin rpy="0 0 0" xyz="${arm_radius*2} 0 ${arm_len/2}"/>
         <material name="grey1"/>
         <geometry>
           <cylinder radius="${arm_radius}" length="${arm_len}"/>
         </geometry>
       </visual>
       <collision>
-        <origin rpy="0 0 0" xyz="${arm_radius*2} 0 -${arm_len/2}"/>
+        <origin rpy="0 0 0" xyz="${arm_radius*2} 0 ${arm_len/2}"/>
         <geometry>
           <cylinder radius="${arm_radius}" length="${arm_len}"/>
         </geometry>
@@ -65,11 +75,21 @@
       <xacro:arm_inertial mass="${arm_mass}" len="${arm_len}"/>
     </link>
 
+    <link name="link_2_tip">
+      <xacro:default_inertial mass="0.00001"/>
+    </link>
+    <joint name="link_2__link_2_tip" type="revolute">
+      <parent link="link_2"/>
+      <child link="link_2_tip"/>
+      <origin rpy="0 0 0" xyz="${2*arm_radius} 0 ${arm_len + 0.1}"/>
+      <limit lower="0" upper="0" effort="0" velocity="0"/>
+    </joint>
+
     <joint name="link_1__link_2" type="revolute">
       <parent link="link_1"/>
       <child link="link_2"/>
       <limit effort="10000.0" lower="${-pi}" upper="${pi}" velocity="10.0"/>
-      <origin rpy="0 0 0" xyz="${arm_radius} 0 -${arm_len}"/>
+      <origin rpy="${pi} 0 0" xyz="${arm_radius} 0 -${arm_len}"/>
       <dynamics friction="0" damping="0.001"/>
     </joint>
     <transmission name="link_1__link_2_trans">
@@ -92,7 +112,7 @@
     <joint name="link_2__gripper" type="fixed">
       <parent link="link_2"/>
       <child link="link_2_gripper_pole"/>
-      <origin rpy="0 ${pi/2} 0" xyz="${arm_radius*2} 0 -${arm_len}"/>
+      <origin rpy="0 -${pi/2} 0" xyz="${arm_radius*2} 0 ${arm_len}"/>
     </joint>
 
     <link name="link_1_gripper_pole">
@@ -108,7 +128,7 @@
         </geometry>
         <origin xyz="0 0 0" rpy="0 0 0 "/>
       </collision>
-      <xacro:default_inertial mass="0.001"/>
+      <xacro:default_inertial mass="0.00001"/>
     </link>
 
     <link name="link_2_gripper_pole">
@@ -124,7 +144,7 @@
         </geometry>
         <origin xyz="0 0 0" rpy="0 0 0 "/>
       </collision>
-      <xacro:default_inertial mass="0.001"/>
+      <xacro:default_inertial mass="0.00001"/>
     </link>
 
     <xacro:macro name="gripper" params="prefix reflect link_name">
