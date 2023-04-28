@@ -48,6 +48,11 @@ namespace gibbon
 
         const int findIndex(const vector<string> &ln, const string &s) const;
 
+        inline const bool gp_l1_closed() const { return fabs(_joint_states(1)) < 1e-02 && fabs(_joint_states(2)) < 1e-02;};
+        inline const bool gp_l2_closed() const { return fabs(_joint_states(3)) < 1e-02 && fabs(_joint_states(4)) < 1e-02;};
+        inline const bool gp_l1_opened() const { return !gp_l1_closed();};
+        inline const bool gp_l2_opened() const { return !gp_l2_closed();};
+
     public:
         Control(const shared_ptr<Model> &m, const double hz);
 
