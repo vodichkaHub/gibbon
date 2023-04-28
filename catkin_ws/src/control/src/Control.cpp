@@ -185,6 +185,12 @@ namespace gibbon
         }
     }
 
+    void Control::startCallback(std_msgs::BoolConstPtr state)
+    {
+        if (state->data)
+            _start = true;
+    }
+
     const int Control::switchArm() const
     {
         if (gp_l1_closed())

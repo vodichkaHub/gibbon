@@ -26,8 +26,8 @@
         args="-z 2.91 -Y 1.57 -urdf -model gibbon -param robot_description
               -J link_1__link_2 1.5
               -J link_1_left_gripper_joint 0.00
-              -J link_2_left_gripper_joint 3.00
-              -J link_2_right_gripper_joint 3.00
+              -J link_2_left_gripper_joint 0.00
+              -J link_2_right_gripper_joint 0.00
               -J link_1_right_gripper_joint 0.00"
               respawn="false" output="screen" />
 

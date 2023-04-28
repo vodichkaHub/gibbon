@@ -6,6 +6,7 @@
     <arg name="topic_position_target_l2_dr" default="/gibbon/joint_l2_dr/command"/>
     <arg name="topic_joint_state" default="/gibbon/joint_states"/>
     <arg name="topic_link_state" default="/gazebo/link_states"/>
+    <arg name="topic_start_cmd" default="/gibbon/start_mission"/>
 
     <!-- <param name="/use_sim_time" value=""/> -->
 
@@ -17,5 +18,6 @@
         <param name="topic_position_target_l2_dr" value="$(arg topic_position_target_l2_dr)" />
         <param name="topic_joint_state" value="$(arg topic_joint_state)" />
         <param name="topic_link_state" value="$(arg topic_link_state)" />
+        <param name="topic_start_cmd" value="$(arg topic_start_cmd)" />
     </node>
 </launch>

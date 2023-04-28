@@ -6,6 +6,7 @@
 #include "Eigen/Geometry"
 #include "ros/ros.h"
 #include "std_msgs/Float64.h"
+#include "std_msgs/Bool.h"
 #include "sensor_msgs/JointState.h"
 #include "gazebo_msgs/LinkStates.h"
 
@@ -42,6 +43,7 @@ namespace gibbon
         double _prev_time = -1.;
         double _Kp, _Kd;
         double _u = 0.;
+        bool _start = false;
 
         bool _fb1 = false;
         bool _fb2 = false;
@@ -78,6 +80,8 @@ namespace gibbon
 
         void linkStateCallback(gazebo_msgs::LinkStatesConstPtr state);
 
+        void startCallback(std_msgs::BoolConstPtr state);
+
         inline const double calcReferenceQ2() const { return 0.52 * atan(_dq.x()); };
 
         const int switchArm() const;
@@ -87,7 +91,8 @@ namespace gibbon
         static const std_msgs::Float64 getGPCloseCommand();
         static const std_msgs::Float64 getGPOpenCommand();
 
-        const bool fb_ready() const { return _fb1 && _fb2; };
+        inline const bool fb_ready() const { return _fb1 && _fb2; };
+        inline const bool start() const { return _start; };
     };
 
 } // namespace gibbon
