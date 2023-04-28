@@ -14,6 +14,7 @@
         <param name="topic_position_target_l1_dl" value="$(arg topic_position_target_l1_dl)" />
         <param name="topic_position_target_l1_dr" value="$(arg topic_position_target_l1_dr)" />
         <param name="topic_position_target_l2_dl" value="$(arg topic_position_target_l2_dl)" />
+        <param name="topic_position_target_l2_dr" value="$(arg topic_position_target_l2_dr)" />
         <param name="topic_joint_state" value="$(arg topic_joint_state)" />
         <param name="topic_link_state" value="$(arg topic_link_state)" />
     </node>
