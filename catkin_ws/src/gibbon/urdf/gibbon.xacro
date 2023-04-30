@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name='gibbon'>
 
     <xacro:property name="arm_radius" value="0.01" />
-    <xacro:property name="arm_len" value="0.7" />
+    <xacro:property name="arm_len" value="0.8" />
     <xacro:property name="arm_mass" value="1.0" />
     <xacro:property name="width" value="0.2" />
     <xacro:property name="polelen" value="0.0" />
@@ -52,9 +52,9 @@
       <xacro:default_inertial mass="0.00001"/>
     </link>
     <joint name="link_1__link_1_tip" type="revolute">
-      <parent link="link_1"/>
-      <child link="link_1_tip"/>
-      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <parent link="link_1_tip"/>
+      <child link="link_1"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.1"/>
       <limit lower="0" upper="0" effort="0" velocity="0"/>
     </joint>
 

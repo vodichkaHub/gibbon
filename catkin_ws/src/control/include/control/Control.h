@@ -86,8 +86,8 @@ namespace gibbon
 
         const int switchArm() const;
 
-        inline const bool gp_l1_closed() const { return fabs(_gp_states.x()) < 1e-02 && fabs(_gp_states.y()) < 1e-02; };
-        inline const bool gp_l2_closed() const { return fabs(_gp_states.z()) < 1e-02 && fabs(_gp_states.w()) < 1e-02; };
+        inline const bool gp_l1_closed() const { return fabs(_gp_states.x()) < 0.08 && fabs(_gp_states.y()) < 0.08; };
+        inline const bool gp_l2_closed() const { return fabs(_gp_states.z()) < 0.08 && fabs(_gp_states.w()) < 0.08; };
         static const std_msgs::Float64 getGPCloseCommand();
         static const std_msgs::Float64 getGPOpenCommand();
 

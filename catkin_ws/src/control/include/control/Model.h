@@ -58,9 +58,9 @@ namespace gibbon
         Model()
         {
             g = 9.8;
-            l1 = 0.7;
+            l1 = 0.8;
             lc1 = l1 / 2.;
-            l2 = 0.7;
+            l2 = 0.8;
             lc2 = l2 / 2.;
             m1 = 1.;
             m2 = 1.;

@@ -1,6 +1,6 @@
 <launch>
   <!-- these are the arguments you can pass this launch file, for example paused:=true -->
-  <arg name="paused" default="false"/>
+  <arg name="paused" default="true"/>
   <arg name="use_sim_time" default="true"/>
   <arg name="gui" default="true"/>
   <arg name="headless" default="false"/>
@@ -23,12 +23,12 @@
 
 <!-- HANGING -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-z 2.91 -Y 1.57 -urdf -model gibbon -param robot_description
-              -J link_1__link_2 1.5
-              -J link_1_left_gripper_joint 0.00
-              -J link_2_left_gripper_joint 0.00
-              -J link_2_right_gripper_joint 0.00
-              -J link_1_right_gripper_joint 0.00"
+        args="-z 3.033 -y 0.018 -x -0.05 -Y 1.57 -R -0.987 -urdf -model gibbon -param robot_description
+              -J link_1__link_2 -1.17
+              -J link_1_left_gripper_joint 0.04
+              -J link_2_left_gripper_joint 0.04
+              -J link_2_right_gripper_joint 0.04
+              -J link_1_right_gripper_joint 0.04"
               respawn="false" output="screen" />
 
 <!-- ON THE FLOOR -->

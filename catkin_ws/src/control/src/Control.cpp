@@ -187,22 +187,19 @@ namespace gibbon
 
     void Control::startCallback(std_msgs::BoolConstPtr state)
     {
-        if (state->data)
-            _start = true;
+        _start = state->data;
     }
 
     const int Control::switchArm() const
     {
         if (gp_l1_closed())
         {
-            cerr << distVec3(_gibbon_p.at(1), _ladder_p.at(1)) << endl
-                 << endl;
-            if (distVec3(_gibbon_p.at(1), _ladder_p.at(1)) < 0.2)
+            if (distVec3(_gibbon_p.at(1), _ladder_p.at(3)) < 0.2 && _gibbon_p.at(1).x() < _ladder_p.at(3).x())
                 return 1;
         }
         else
         {
-            if (distVec3(_gibbon_p.at(0), _ladder_p.at(2)) < 0.2)
+            if (distVec3(_gibbon_p.at(0), _ladder_p.at(2)) < 0.2 && _gibbon_p.at(0).x() < _ladder_p.at(2).x())
                 return 2;
         }
         return -1;
