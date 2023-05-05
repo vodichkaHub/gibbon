@@ -1,0 +1,9 @@
+std_msgs/Header header
+
+float64 tf
+uint32 N_steps
+float64[] x0
+float64[] xf
+
+---
+std_msgs/Float64MultiArray[] trajectory

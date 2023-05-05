@@ -3,7 +3,7 @@
 
     <!-- <param name="/use_sim_time" value="true"> -->
 
-    <node name="mpc_node" pkg="mpc_solver" type="mpc_node.py" ns="/gibbon" output="screen">
+    <node name="mpc_srv" pkg="mpc_solver" type="mpc_node.py" ns="/gibbon" output="screen">
         <!-- <param name="topic_position_target_drive" value="$(arg topic_position_target_drive)" /> -->
     </node>
 </launch>
