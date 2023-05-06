@@ -1,0 +1,114 @@
+<?xml version='1.0'?>
+<robot  name="ladder">
+  <!-- <link name='ladder__base_link'/> -->
+
+  <!-- <joint name="l_b_0" type="revolute">
+    <parent link="ladder__base_link"/>
+    <child link="ladder__link_0"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <limit effort="0" lower="0" upper="0" velocity="0"/>
+  </joint> -->
+
+  <joint name="l_b_1" type="revolute">
+    <parent link="ladder__link_0"/>
+    <child link="ladder__link_1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <limit effort="0" lower="0" upper="0" velocity="0"/>
+  </joint>
+
+  <joint name="l_b_2" type="revolute">
+    <parent link="ladder__link_0"/>
+    <child link="ladder__link_2"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <limit effort="0" lower="0" upper="0" velocity="0"/>
+  </joint>
+
+  <joint name="l_b_3" type="revolute">
+    <parent link="ladder__link_0"/>
+    <child link="ladder__link_3"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <limit effort="0" lower="0" upper="0" velocity="0"/>
+  </joint>
+
+
+  <link name='ladder__link_0'>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.1633333333333333" ixy="0.0" ixz="0.0" iyy="0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="1.57 0 0" xyz="0 0 3"/>
+      <geometry>
+        <cylinder length="0.3" radius="0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.57 0 0" xyz="0 0 3"/>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <cylinder length="0.3" radius="0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name='ladder__link_1'>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.1633333333333333" ixy="0.0" ixz="0.0" iyy="0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="1.57 0 0" xyz="1.4 0 3"/>
+      <geometry>
+        <cylinder length="0.3" radius="0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.57 0 0" xyz="1.4 0 3"/>
+      <geometry>
+        <cylinder length="0.3" radius="0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name='ladder__link_2'>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.1633333333333333" ixy="0.0" ixz="0.0" iyy="0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="1.57 0 0" xyz="2.8 0 3"/>
+      <geometry>
+        <cylinder length="0.3" radius="0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.57 0 0" xyz="2.8 0 3"/>
+      <geometry>
+        <cylinder length="0.3" radius="0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name='ladder__link_3'>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.1633333333333333" ixy="0.0" ixz="0.0" iyy="0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="1.57 0 0" xyz="4.2 0 3"/>
+      <geometry>
+        <cylinder length="0.3" radius="0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.57 0 0" xyz="4.2 0 3"/>
+      <geometry>
+        <cylinder length="0.3" radius="0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo>
+    <static>true</static>
+  </gazebo>
+</robot>
