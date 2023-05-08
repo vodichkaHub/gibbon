@@ -1,13 +1,15 @@
 <launch>
     <arg name="gibbon_model" default="$(find gibbon)/urdf/gibbon.xacro"/>
-    <arg name="ladder_model" default="$(find gibbon)/urdf/models/ladder.urdf"/>
+    <arg name="ladder_model" default="$(find gibbon)/urdf/ladder.xacro"/>
     <arg name="rvizconfig" default="$(find gibbon)/rviz/basic.rviz"/>
     <arg name="gui" default="true" />
+
 
     <node pkg="tf" type="static_transform_publisher" name="gibbon_caster" args="0 0 0 0 0 0 1 world link_1_tip 100" />
     <node pkg="tf" type="static_transform_publisher" name="ladder_caster" args="0 0 0 0 0 0 1 world ladder__link_0 100" />
     <param name="robot_description" command="$(find xacro)/xacro $(arg gibbon_model)" />
     <param name="ladder_description" command="$(find xacro)/xacro $(arg ladder_model)" />
+    <param name="/use_sim_time" value="false" />
 
     <node if="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
     <node unless="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />

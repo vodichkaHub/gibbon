@@ -1,5 +1,6 @@
 <?xml version='1.0'?>
-<robot  name="ladder">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ladder">
+  <xacro:include filename="$(find gibbon)/urdf/materials.xacro" />
   <!-- <link name='ladder__base_link'/> -->
 
   <!-- <joint name="l_b_0" type="revolute">
@@ -203,30 +204,34 @@
     </collision>
   </link>
 
-    <gazebo reference="ladder__link_0">
-      <mu1>0.001</mu1>
-      <mu2>0.001</mu2>
-      <kp>0.001</kp>
-      <kd>0.001</kd>
-    </gazebo>
-    <gazebo reference="ladder__link_1">
-      <mu1>0.001</mu1>
-      <mu2>0.001</mu2>
-      <kp>0.001</kp>
-      <kd>0.001</kd>
-    </gazebo>
-    <gazebo reference="ladder__link_2">
-      <mu1>0.001</mu1>
-      <mu2>0.001</mu2>
-      <kp>0.001</kp>
-      <kd>0.001</kd>
-    </gazebo>
-    <gazebo reference="ladder__link_3">
-      <mu1>0.001</mu1>
-      <mu2>0.001</mu2>
-      <kp>0.001</kp>
-      <kd>0.001</kd>
-    </gazebo>
+  <gazebo reference="ladder__link_0">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <kp>0</kp>
+    <kd>0</kd>
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="ladder__link_1">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <kp>0</kp>
+    <kd>0</kd>
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="ladder__link_2">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <kp>0</kp>
+    <kd>0</kd>
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="ladder__link_3">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <kp>0</kp>
+    <kd>0</kd>
+    <material>Gazebo/Black</material>
+  </gazebo>
 
   <gazebo>
     <static>true</static>
