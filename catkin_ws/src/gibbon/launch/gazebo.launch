@@ -25,11 +25,11 @@
   <param name="ladder_description" command="$(find xacro)/xacro $(arg ladder_model)" />
 
 <!-- Ladder -->
-<node name="gibbon_spawner" pkg="gazebo_ros" type="spawn_model"
+<node name="ladder_spawner" pkg="gazebo_ros" type="spawn_model"
         args="-urdf -model ladder -param ladder_description" respawn="false" output="screen" />
 
 <!-- ON START -->
-  <node name="ladder_spawner" pkg="gazebo_ros" type="spawn_model"
+  <node name="gibbon_spawner" pkg="gazebo_ros" type="spawn_model"
         args="-z 3.033 -y 0.018 -x -0.05 -Y 1.57 -R -0.987 -urdf -model gibbon -param robot_description
               -J link_1__link_2 -1.17
               -J link_1_left_gripper_joint 0.04
@@ -39,19 +39,19 @@
               respawn="false" output="screen" />
 
 <!-- HANGING -->
-  <!-- <node name="ladder_spawner" pkg="gazebo_ros" type="spawn_model"
+  <!-- <node name="gibbon_spawner" pkg="gazebo_ros" type="spawn_model"
         args="-z 3.033 -Y 1.57 -urdf -model gibbon -param robot_description
               -J link_1__link_2 -1.47
               -J link_1_left_gripper_joint 0.04
+              -J link_1_right_gripper_joint 0.04
               -J link_2_left_gripper_joint 0.04
-              -J link_2_right_gripper_joint 0.04
-              -J link_1_right_gripper_joint 0.04"
+              -J link_2_right_gripper_joint 0.04"
               respawn="false" output="screen" /> -->
 
 <!-- ON THE FLOOR -->
-  <!-- <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+  <!-- <node name="gibbon_spawner" pkg="gazebo_ros" type="spawn_model"
         args="-z 0.1 -R 1.57 -P 1.57 -urdf -model gibbon -param robot_description
-              -J link_1__link_2 0
+              -J link_1__link_2 -1.3
               -J link_1_left_gripper_joint 0.00
               -J link_1_right_gripper_joint 0.00"
               respawn="false" output="screen" /> -->
