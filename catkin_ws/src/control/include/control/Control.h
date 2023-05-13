@@ -14,6 +14,8 @@
 
 #include "Model.h"
 
+#include "mpc_solver/mpc_solve.h"
+
 using namespace std;
 using gm = gibbon::Model;
 
@@ -45,12 +47,15 @@ namespace gibbon
         double _u = 0.;
         bool _start = false;
 
+        int _f_count = 0;
+        vector<double> _mem_u;
+
         bool _fb1 = false;
         bool _fb2 = false;
 
         Vector4 _gp_states;
-        Vector2 _q;
-        Vector2 _dq;
+        Vector2 _q = {-1, -1};
+        Vector2 _dq = {-1, -1};
 
         array<Vector3, 4> _ladder_p;
         array<Vector3, 2> _gibbon_p;
@@ -93,6 +98,10 @@ namespace gibbon
 
         inline const bool fb_ready() const { return _fb1 && _fb2; };
         inline const bool start() const { return _start; };
+
+        inline auto getMemU() { return _mem_u; };
+
+        inline Vector4 getState() const {return {_q.x(), _q.y(), _dq.x(), _dq.y()};};
     };
 
 } // namespace gibbon

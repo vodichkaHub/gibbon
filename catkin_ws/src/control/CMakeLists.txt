@@ -8,11 +8,13 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   geometry_msgs
+  nav_msgs
   sensor_msgs
   gazebo_msgs
   tf2_geometry_msgs
   tf2_ros
   tf2
+  mpc_solver
 )
 
 find_package(Boost REQUIRED)
@@ -41,11 +43,13 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ${geometry_msgs_INCLUDE_DIRS}
+  ${nav_msgs_INCLUDE_DIRS}
   ${sensor_msgs_INCLUDE_DIRS}
   ${gazebo_msgs_INCLUDE_DIRS}
   ${tf2_geometry_msgs_INCLUDE_DIRS}
   ${tf2_INCLUDE_DIRS}
   ${tf2_ros_INCLUDE_DIRS}
+  ${mpc_solver_INCLUDE_DIRS}
 )
 
 file(GLOB_RECURSE SOURCES_FILES src/*.cpp)

@@ -94,6 +94,21 @@ namespace gibbon
         const double dq1(_dq.x());
         const double dq2(_dq.y());
 
+        mpc_solver::mpc_solve srv;
+        srv.request.header.stamp = ros::Time::now();
+        srv.request.N_steps = 350;
+        srv.request.x0 = {q1, q2, dq1, dq2};
+        srv.request.xf = {-0.8634, 1.32896, 0, 0};
+        // srv.request.xf = {-0.907369, 1.32896, 0, 0};
+        srv.request.tf = 3.;
+        // _mpc_solver->call(req, resp);
+        ros::service::call("mpc_solve", srv);
+        ROS_ERROR("MPS RES %i ", srv.response.trajectory.size());
+        if (!srv.response.trajectory.empty() && _mem_u.empty())
+            _mem_u = srv.response.trajectory.back().data;
+        for (auto p : _mem_u)
+            cerr << endl
+                 << p << endl;
         const double q2_ref(calcReferenceQ2());
 
         const auto m_M(_m->M(_q));
@@ -119,10 +134,10 @@ namespace gibbon
 
         const int l1_tip_ind(findIndex(state->name, "gibbon::link_1_tip"));
         const int l2_tip_ind(findIndex(state->name, "gibbon::link_2_tip"));
-        const int lad1_ind(findIndex(state->name, "ladder::link_0"));
-        const int lad2_ind(findIndex(state->name, "ladder::link_0_clone"));
-        const int lad3_ind(findIndex(state->name, "ladder::link_0_clone_clone"));
-        const int lad4_ind(findIndex(state->name, "ladder::link_0_clone_clone_0"));
+        const int lad1_ind(findIndex(state->name, "ladder::ladder__link_0"));
+        const int lad2_ind(findIndex(state->name, "ladder::ladder__link_1"));
+        const int lad3_ind(findIndex(state->name, "ladder::ladder__link_2"));
+        const int lad4_ind(findIndex(state->name, "ladder::ladder__link_3"));
 
         auto p = state->pose.at(lad1_ind).position;
         _ladder_p.at(0) = Vector3(p.x, p.y, p.z);
@@ -158,7 +173,6 @@ namespace gibbon
 
     void Control::jointStateCallback(sensor_msgs::JointStateConstPtr state)
     {
-        _fb2 = true;
         const int l1_l2_ind(findIndex(state->name, "link_1__link_2"));
         const int gp_l1_l_ind(findIndex(state->name, "link_1_left_gripper_joint"));
         const int gp_l1_r_ind(findIndex(state->name, "link_1_right_gripper_joint"));
@@ -182,6 +196,7 @@ namespace gibbon
             double r, p, y;
             link_1_tip_m.getRPY(r, p, y);
             _q.x() = p;
+            _fb2 = true;
         }
     }
 
