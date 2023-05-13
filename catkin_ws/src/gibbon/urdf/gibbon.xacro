@@ -20,18 +20,16 @@
     <xacro:macro name="arm_inertial" params="mass len">
       <inertial>
         <mass value="${mass}" />
-        <inertia ixx="${1.0 / 3.0 * mass * len * len}" ixy="0.0" ixz="0.0" iyy="0" iyz="0.0" izz="0.0" />
+        <inertia ixx="${1.0 / 3.0 * mass * len * len}" ixy="0.0" ixz="0.0" iyy="${1.0 / 3.0 * mass * len * len}" iyz="0.0" izz="0.001" />
       </inertial>
     </xacro:macro>
 
-    <!-- <link name="base_link"/> -->
-    <!-- <joint name="base_link__link_1" type="fixed">
-      <parent link="base_link"/>
-      <child link="link_1"/>
-      <origin rpy="0 0 0" xyz="0 0 -0.1"/>
-    </joint> -->
-
     <link name='link_1'>
+      <inertial>
+        <mass value="${arm_mass}" />
+        <inertia ixx="0.21" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.05" />
+        <origin rpy="0 0 0" xyz="0 0 -${arm_len/2}"/>
+      </inertial>
       <visual>
         <origin rpy="0 0 0" xyz="0 0 -${arm_len/2}"/>
         <material name="grey2"/>
@@ -45,7 +43,6 @@
           <cylinder radius="${arm_radius}" length="${arm_len}"/>
         </geometry>
       </collision>
-      <xacro:arm_inertial mass="${arm_mass}" len="${arm_len}"/>
     </link>
 
     <link name="link_1_tip">
@@ -60,20 +57,24 @@
     </joint>
 
     <link name='link_2'>
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 ${arm_len/2}"/>
+        <mass value="${arm_mass}" />
+        <inertia ixx="0.21" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.01" />
+      </inertial>
       <visual>
-        <origin rpy="0 0 0" xyz="${arm_radius*2} 0 ${arm_len/2}"/>
+        <origin rpy="0 0 0" xyz="0 0 ${arm_len/2}"/>
         <material name="grey1"/>
         <geometry>
           <cylinder radius="${arm_radius}" length="${arm_len}"/>
         </geometry>
       </visual>
       <collision>
-        <origin rpy="0 0 0" xyz="${arm_radius*2} 0 ${arm_len/2}"/>
+        <origin rpy="0 0 0" xyz="0 0 ${arm_len/2}"/>
         <geometry>
           <cylinder radius="${arm_radius}" length="${arm_len}"/>
         </geometry>
       </collision>
-      <xacro:arm_inertial mass="${arm_mass}" len="${arm_len}"/>
     </link>
 
     <link name="link_2_tip">
@@ -89,9 +90,9 @@
     <joint name="link_1__link_2" type="revolute">
       <parent link="link_1"/>
       <child link="link_2"/>
-      <limit effort="10000.0" lower="${-pi}" upper="${pi}" velocity="30.0"/>
+      <limit effort="1000.0" lower="${-2*pi}" upper="${2*pi}" velocity="30.0"/>
       <origin rpy="${pi} 0 0" xyz="${arm_radius} 0 -${arm_len}"/>
-      <dynamics friction="0" damping="0.001"/>
+      <dynamics friction="0.0" damping="0.0"/>
     </joint>
     <transmission name="link_1__link_2_trans">
       <type>transmission_interface/SimpleTransmission</type>
@@ -113,7 +114,7 @@
     <joint name="link_2__gripper" type="fixed">
       <parent link="link_2"/>
       <child link="link_2_gripper_pole"/>
-      <origin rpy="0 -${pi/2} 0" xyz="${arm_radius*2} 0 ${arm_len}"/>
+      <origin rpy="0 -${pi/2} 0" xyz="0 0 ${arm_len}"/>
     </joint>
 
     <link name="link_1_gripper_pole">
@@ -151,7 +152,7 @@
     <xacro:macro name="gripper" params="prefix reflect link_name">
       <joint name="${link_name}_${prefix}_gripper_joint" type="revolute">
         <axis xyz="0 0 ${reflect}"/>
-        <limit effort="100000.0" lower="0.0" upper="3" velocity="10"/>
+        <limit effort="1000.0" lower="0.0" upper="3" velocity="30"/>
         <origin rpy="0 0 0" xyz="${polelen} ${reflect*0.01} 0"/>
         <parent link="${link_name}_gripper_pole"/>
         <child link="${link_name}_${prefix}_gripper"/>
@@ -204,20 +205,20 @@
       <material>Gazebo/Red</material>
     </gazebo>
     <gazebo reference="link_1_left_gripper">
-      <mu1>1e-00</mu1>
-      <mu2>1e-00</mu2>
+      <mu1>1e-01</mu1>
+      <mu2>1e-01</mu2>
     </gazebo>
     <gazebo reference="link_1_right_gripper">
-      <mu1>1e-00</mu1>
-      <mu2>1e-00</mu2>
+      <mu1>1e-01</mu1>
+      <mu2>1e-01</mu2>
     </gazebo>
     <gazebo reference="link_2_left_gripper">
-      <mu1>1e-00</mu1>
-      <mu2>1e-00</mu2>
+      <mu1>1e-01</mu1>
+      <mu2>1e-01</mu2>
     </gazebo>
     <gazebo reference="link_2_right_gripper">
-      <mu1>1e-00</mu1>
-      <mu2>1e-00</mu2>
+      <mu1>1e-01</mu1>
+      <mu2>1e-01</mu2>
     </gazebo>
 
     <gazebo>
