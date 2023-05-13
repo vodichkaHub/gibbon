@@ -152,7 +152,10 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <spring_reference>0</spring_reference>
+              <spring_stiffness>1000</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
@@ -171,7 +174,10 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <spring_reference>0</spring_reference>
+              <spring_stiffness>1000</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
@@ -239,7 +245,10 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <spring_reference>0</spring_reference>
+              <spring_stiffness>1000</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
@@ -258,7 +267,10 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <spring_reference>0</spring_reference>
+              <spring_stiffness>1000</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
@@ -298,10 +310,10 @@
           <velocity>30</velocity>
         </limit>
         <dynamics>
-          <damping>0</damping>
-          <friction>0</friction>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
+          <damping>0.0</damping>
+          <friction>0.0</friction>
+          <spring_reference>0.0</spring_reference>
+          <spring_stiffness>0.0</spring_stiffness>
         </dynamics>
       </axis>
     </joint>
@@ -397,7 +409,10 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <spring_reference>0</spring_reference>
+              <spring_stiffness>1000</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
@@ -416,7 +431,10 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <spring_reference>0</spring_reference>
+              <spring_stiffness>1000</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
@@ -484,7 +502,10 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <spring_reference>0</spring_reference>
+              <spring_stiffness>1000</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
@@ -503,7 +524,10 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <spring_reference>0</spring_reference>
+              <spring_stiffness>1000</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
