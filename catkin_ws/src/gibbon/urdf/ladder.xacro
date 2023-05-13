@@ -205,29 +205,29 @@
   </link>
 
   <gazebo reference="ladder__link_0">
-    <mu1>1</mu1>
-    <mu2>1</mu2>
+    <mu1>1e-03</mu1>
+    <mu2>1e-03</mu2>
     <kp>0</kp>
     <kd>0</kd>
     <material>Gazebo/Black</material>
   </gazebo>
   <gazebo reference="ladder__link_1">
-    <mu1>1</mu1>
-    <mu2>1</mu2>
+    <mu1>1e-03</mu1>
+    <mu2>1e-03</mu2>
     <kp>0</kp>
     <kd>0</kd>
     <material>Gazebo/Black</material>
   </gazebo>
   <gazebo reference="ladder__link_2">
-    <mu1>1</mu1>
-    <mu2>1</mu2>
+    <mu1>1e-03</mu1>
+    <mu2>1e-03</mu2>
     <kp>0</kp>
     <kd>0</kd>
     <material>Gazebo/Black</material>
   </gazebo>
   <gazebo reference="ladder__link_3">
-    <mu1>1</mu1>
-    <mu2>1</mu2>
+    <mu1>1e-03</mu1>
+    <mu2>1e-03</mu2>
     <kp>0</kp>
     <kd>0</kd>
     <material>Gazebo/Black</material>

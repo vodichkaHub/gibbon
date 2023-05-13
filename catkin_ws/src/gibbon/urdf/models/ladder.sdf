@@ -23,12 +23,19 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <collsion>
+                <kp>0</kp>
+                <kd>0</kd>
+              </collsion>
+              <spring_reference>0.0</spring_reference>
+              <spring_stiffness>100000.0</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
-              <mu>0.001</mu>
-              <mu2>0.001</mu2>
+              <mu>0.000001</mu>
+              <mu2>0.0000001</mu2>
             </ode>
             <slip1>0</slip1>
             <slip2>0</slip2>
@@ -45,12 +52,19 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <collsion>
+                <kp>0</kp>
+                <kd>0</kd>
+              </collsion>
+              <spring_reference>0.0</spring_reference>
+              <spring_stiffness>100000.0</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
-              <mu>0.001</mu>
-              <mu2>0.001</mu2>
+              <mu>0.000001</mu>
+              <mu2>0.0000001</mu2>
             </ode>
             <slip1>0</slip1>
             <slip2>0</slip2>
@@ -67,12 +81,19 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <collsion>
+                <kp>0</kp>
+                <kd>0</kd>
+              </collsion>
+              <spring_reference>0.0</spring_reference>
+              <spring_stiffness>100000.0</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
-              <mu>0.001</mu>
-              <mu2>0.001</mu2>
+              <mu>0.000001</mu>
+              <mu2>0.0000001</mu2>
             </ode>
             <slip1>0</slip1>
             <slip2>0</slip2>
@@ -167,12 +188,19 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <collsion>
+                <kp>0</kp>
+                <kd>0</kd>
+              </collsion>
+              <spring_reference>0.0</spring_reference>
+              <spring_stiffness>100000.0</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
-              <mu>0.001</mu>
-              <mu2>0.001</mu2>
+              <mu>0.000001</mu>
+              <mu2>0.0000001</mu2>
             </ode>
             <slip1>0</slip1>
             <slip2>0</slip2>
@@ -189,12 +217,19 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <collsion>
+                <kp>0</kp>
+                <kd>0</kd>
+              </collsion>
+              <spring_reference>0.0</spring_reference>
+              <spring_stiffness>100000.0</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
-              <mu>0.001</mu>
-              <mu2>0.001</mu2>
+              <mu>0.000001</mu>
+              <mu2>0.0000001</mu2>
             </ode>
             <slip1>0</slip1>
             <slip2>0</slip2>
@@ -211,12 +246,19 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <collsion>
+                <kp>0</kp>
+                <kd>0</kd>
+              </collsion>
+              <spring_reference>0.0</spring_reference>
+              <spring_stiffness>100000.0</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
-              <mu>0.001</mu>
-              <mu2>0.001</mu2>
+              <mu>0.000001</mu>
+              <mu2>0.0000001</mu2>
             </ode>
             <slip1>0</slip1>
             <slip2>0</slip2>
@@ -311,12 +353,19 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <collsion>
+                <kp>0</kp>
+                <kd>0</kd>
+              </collsion>
+              <spring_reference>0.0</spring_reference>
+              <spring_stiffness>100000.0</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
-              <mu>0.001</mu>
-              <mu2>0.001</mu2>
+              <mu>0.000001</mu>
+              <mu2>0.0000001</mu2>
             </ode>
             <slip1>0</slip1>
             <slip2>0</slip2>
@@ -333,12 +382,19 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <collsion>
+                <kp>0</kp>
+                <kd>0</kd>
+              </collsion>
+              <spring_reference>0.0</spring_reference>
+              <spring_stiffness>100000.0</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
-              <mu>0.001</mu>
-              <mu2>0.001</mu2>
+              <mu>0.000001</mu>
+              <mu2>0.0000001</mu2>
             </ode>
             <slip1>0</slip1>
             <slip2>0</slip2>
@@ -355,12 +411,19 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <collsion>
+                <kp>0</kp>
+                <kd>0</kd>
+              </collsion>
+              <spring_reference>0.0</spring_reference>
+              <spring_stiffness>100000.0</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
-              <mu>0.001</mu>
-              <mu2>0.001</mu2>
+              <mu>0.000001</mu>
+              <mu2>0.0000001</mu2>
             </ode>
             <slip1>0</slip1>
             <slip2>0</slip2>
@@ -455,12 +518,19 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <collsion>
+                <kp>0</kp>
+                <kd>0</kd>
+              </collsion>
+              <spring_reference>0.0</spring_reference>
+              <spring_stiffness>100000.0</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
-              <mu>0.001</mu>
-              <mu2>0.001</mu2>
+              <mu>0.000001</mu>
+              <mu2>0.0000001</mu2>
             </ode>
             <slip1>0</slip1>
             <slip2>0</slip2>
@@ -477,12 +547,19 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <collsion>
+                <kp>0</kp>
+                <kd>0</kd>
+              </collsion>
+              <spring_reference>0.0</spring_reference>
+              <spring_stiffness>100000.0</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
-              <mu>0.001</mu>
-              <mu2>0.001</mu2>
+              <mu>0.000001</mu>
+              <mu2>0.0000001</mu2>
             </ode>
             <slip1>0</slip1>
             <slip2>0</slip2>
@@ -499,12 +576,19 @@
         </geometry>
         <surface>
           <contact>
-            <ode/>
+            <ode>
+              <collsion>
+                <kp>0</kp>
+                <kd>0</kd>
+              </collsion>
+              <spring_reference>0.0</spring_reference>
+              <spring_stiffness>100000.0</spring_stiffness>
+            </ode>
           </contact>
           <friction>
             <ode>
-              <mu>0.001</mu>
-              <mu2>0.001</mu2>
+              <mu>0.000001</mu>
+              <mu2>0.0000001</mu2>
             </ode>
             <slip1>0</slip1>
             <slip2>0</slip2>
