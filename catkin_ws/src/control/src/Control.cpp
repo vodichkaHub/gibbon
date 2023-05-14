@@ -34,15 +34,15 @@ namespace gibbon
 
     const int Control::findIndex(const vector<string> &ln, const string &s) const
     {
-        int i = -1;
+        int i = 0;
         for (const auto &n : ln)
         {
             if (n == s)
-                break;
+                return i;
             else
                 i++;
         }
-        return i;
+        return -1;
     }
 
     const pair<ros::Time, gm::_state_t> Control::step_ode(gm::_state_t x0)
