@@ -7,10 +7,10 @@
   <arg name="headless" default="false"/>
   <arg name="debug" default="false"/>
   <arg name="gibbon_model" default="$(find gibbon)/urdf/gibbon.xacro"/>
-  <arg name="gibbon_sdf_file" default="$(find gibbon)/urdf/models/gibbon.sdf"/>
+  <!-- <arg name="gibbon_sdf_file" default="$(find gibbon)/urdf/models/gibbon.sdf"/> -->
   <!-- <arg name="drake_urdf_file" default="/home/vodichka/workspace/drake/examples/acrobot/Acrobot.urdf"/> -->
   <arg name="ladder_model" default="$(find gibbon)/urdf/ladder.xacro"/>
-  <arg name="ladder_sdf_file" default="$(find gibbon)/urdf/models/ladder.sdf"/>
+  <!-- <arg name="ladder_sdf_file" default="$(find gibbon)/urdf/models/ladder.sdf"/> -->
   <arg name="rvizconfig" default="$(find gibbon)/rviz/basic.rviz"/>
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
@@ -31,10 +31,6 @@
 <node name="ladder_spawner" pkg="gazebo_ros" type="spawn_model"
         args="-urdf -model ladder -param ladder_description" respawn="false" output="screen" />
 
-<!-- Ladder SDF-->
-<!-- <node name="ladder_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-sdf -model ladder -file $(arg ladder_sdf_file)" respawn="false" output="screen" /> -->
-
 <!-- ON START -->
   <!-- <node name="gibbon_spawner" pkg="gazebo_ros" type="spawn_model"
         args="-z 3.033 -y 0.018 -x -0.05 -Y 1.57 -R -0.987 -urdf -model gibbon -param robot_description
@@ -44,29 +40,9 @@
               -J link_1_right_gripper_joint 0.04"
               respawn="false" output="screen" /> -->
 
-<!-- ON START SDF-->
-<!-- <node name="gibbon_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-z 3.033 -y 0.018 -x -0.05 -Y 1.57 -R -0.987 -sdf -model gibbon
-              -file $(arg gibbon_sdf_file)
-              -J link_1_left_gripper_joint 0.04
-              -J link_2_left_gripper_joint 0.04
-              -J link_2_right_gripper_joint 0.04
-              -J link_1_right_gripper_joint 0.04"
-              respawn="false" output="screen" /> -->
-
 <!-- HANGING -->
-        <!-- args="-z 3.033 -Y 1.57 -urdf -model gibbon -param robot_description -->
-  <node name="gibbon_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-z 2.933 -Y 1.57 -urdf -model gibbon -param robot_description
-              -J link_1_left_gripper_joint 0.04
-              -J link_1_right_gripper_joint 0.04
-              -J link_2_left_gripper_joint 0.04
-              -J link_2_right_gripper_joint 0.04"
-              respawn="false" output="screen" />
-
-<!-- HANGING SDF -->
   <!-- <node name="gibbon_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-z 3.033 -Y 1.57 -file $(arg gibbon_sdf_file) -sdf -model gibbon
+        args="-z 3.033 -Y 1.57 -urdf -model gibbon -param robot_description
               -J link_1_left_gripper_joint 0.04
               -J link_1_right_gripper_joint 0.04
               -J link_2_left_gripper_joint 0.04
