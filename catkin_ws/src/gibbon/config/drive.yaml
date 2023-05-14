@@ -11,21 +11,29 @@ joint_drive:
   # type: effort_controllers/JointPositionController
   type: effort_controllers/JointEffortController
   joint: link_1__link_2
-  # pid: {p: 1000, i: 0, d: 100}
+  # pid: {p: 1000, i: 0.0, d: 100}
 
 joint_l1_dl:
-  type: position_controllers/JointPositionController
+  # type: position_controllers/JointPositionController
+  type: effort_controllers/JointPositionController
   joint: link_1_left_gripper_joint
+  pid: {p: 1000, i: 0.0, d: 0.0}
 
 joint_l1_dr:
-  type: position_controllers/JointPositionController
+  # type: position_controllers/JointPositionController
+  type: effort_controllers/JointPositionController
   joint: link_1_right_gripper_joint
+  pid: {p: 1000, i: 0.0, d: 0.0}
 
 joint_l2_dl:
-  type: position_controllers/JointPositionController
+  # type: position_controllers/JointPositionController
+  type: effort_controllers/JointPositionController
   joint: link_2_left_gripper_joint
+  pid: {p: 1000, i: 0.0, d: 0.0}
 
 joint_l2_dr:
-  type: position_controllers/JointPositionController
+  # type: position_controllers/JointPositionController
+  type: effort_controllers/JointPositionController
   joint: link_2_right_gripper_joint
+  pid: {p: 1000, i: 0.0, d: 0.0}
 
