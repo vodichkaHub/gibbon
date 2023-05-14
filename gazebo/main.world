@@ -67,11 +67,11 @@
     </light>
     <gravity>0 0 -9.8</gravity>
     <physics type='ode'>
-      <max_step_size>0.0005</max_step_size>
+      <max_step_size>0.0001</max_step_size>
       <real_time_factor>1</real_time_factor>
-      <real_time_update_rate>2000</real_time_update_rate>
+      <real_time_update_rate>5000</real_time_update_rate>
       <constraints>
-        <cfm>0.0</cfm>
+        <cfm>0.05</cfm>
         <erp>0.5</erp>
         <contact_max_correcting_vel>0.1</contact_max_correcting_vel>
         <contact_surface_layer>0.0001</contact_surface_layer>
