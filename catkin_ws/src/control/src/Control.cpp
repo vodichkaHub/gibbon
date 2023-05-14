@@ -34,7 +34,7 @@ namespace gibbon
 
     const int Control::findIndex(const vector<string> &ln, const string &s) const
     {
-        int i = 0;
+        int i = -1;
         for (const auto &n : ln)
         {
             if (n == s)
@@ -139,32 +139,36 @@ namespace gibbon
         const int lad3_ind(findIndex(state->name, "ladder::ladder__link_2"));
         const int lad4_ind(findIndex(state->name, "ladder::ladder__link_3"));
 
-        auto p = state->pose.at(lad1_ind).position;
+        geometry_msgs::Point p;
+        p = lad1_ind > 0 ? state->pose.at(lad1_ind).position : geometry_msgs::Point();
         _ladder_p.at(0) = Vector3(p.x, p.y, p.z);
-        p = state->pose.at(lad2_ind).position;
+        p = lad2_ind > 0 ? state->pose.at(lad2_ind).position : geometry_msgs::Point();
         _ladder_p.at(1) = Vector3(p.x, p.y, p.z);
-        p = state->pose.at(lad3_ind).position;
+        p = lad3_ind > 0 ? state->pose.at(lad3_ind).position : geometry_msgs::Point();
         _ladder_p.at(2) = Vector3(p.x, p.y, p.z);
-        p = state->pose.at(lad4_ind).position;
+        p = lad4_ind > 0 ? state->pose.at(lad4_ind).position : geometry_msgs::Point();
         _ladder_p.at(3) = Vector3(p.x, p.y, p.z);
 
-        p = state->pose.at(l1_tip_ind).position;
+        p = l1_tip_ind > 0 ? state->pose.at(l1_tip_ind).position : geometry_msgs::Point();
         _gibbon_p.at(0) = Vector3(p.x, p.y, p.z);
-        p = state->pose.at(l2_tip_ind).position;
+        p = l2_tip_ind > 0 ? state->pose.at(l2_tip_ind).position : geometry_msgs::Point();
         _gibbon_p.at(1) = Vector3(p.x, p.y, p.z);
-        auto q = state->pose.at(l1_tip_ind).orientation;
+        geometry_msgs::Quaternion q;
+        q = l1_tip_ind > 0 ? state->pose.at(l1_tip_ind).orientation : geometry_msgs::Quaternion();
         _gibbon_q.at(0) = Quaterniond(q.w, q.x, q.y, q.z);
-        q = state->pose.at(l2_tip_ind).orientation;
+        q = l2_tip_ind > 0 ? state->pose.at(l2_tip_ind).orientation : geometry_msgs::Quaternion();
         _gibbon_q.at(1) = Quaterniond(q.w, q.x, q.y, q.z);
 
-        auto vl = state->twist.at(l1_tip_ind).linear;
+        geometry_msgs::Vector3 vl;
+        vl = l1_tip_ind> 0 ? state->twist.at(l1_tip_ind).linear : geometry_msgs::Vector3();
         _gibbon_lin.at(0) = Vector3(vl.x, vl.y, vl.z);
-        vl = state->twist.at(l2_tip_ind).linear;
+        vl = l2_tip_ind> 0 ? state->twist.at(l2_tip_ind).linear : geometry_msgs::Vector3();
         _gibbon_lin.at(1) = Vector3(vl.x, vl.y, vl.z);
 
-        auto va = state->twist.at(l1_tip_ind).angular;
+        geometry_msgs::Vector3 va; 
+        va = l1_tip_ind > 0 ? state->twist.at(l1_tip_ind).angular : geometry_msgs::Vector3();
         _gibbon_ang.at(0) = Vector3(va.x, va.y, va.z);
-        va = state->twist.at(l2_tip_ind).angular;
+        va = l2_tip_ind > 0 ? state->twist.at(l2_tip_ind).angular : geometry_msgs::Vector3();
         _gibbon_ang.at(1) = Vector3(va.x, va.y, va.z);
 
         _dq.x() = _gibbon_ang.at(0).y();
