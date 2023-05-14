@@ -1,7 +1,13 @@
 <?xml version='1.0'?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ladder">
   <xacro:include filename="$(find gibbon)/urdf/materials.xacro" />
-  <!-- <link name='ladder__base_link'/> -->
+  
+  <!-- <link name="world"/>
+
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="ladder__link_0"/>
+  </joint> -->
 
   <!-- <joint name="l_b_0" type="revolute">
     <parent link="ladder__base_link"/>
@@ -34,6 +40,7 @@
 
   <link name='ladder__link_0'>
     <inertial>
+      <origin rpy="1.57 0 0" xyz="0 0.15 3"/>
       <mass value="1.0"/>
       <inertia ixx="0.1633333333333333" ixy="0.0" ixz="0.0" iyy="0" iyz="0.0" izz="0.0"/>
     </inertial>
@@ -77,6 +84,7 @@
 
   <link name='ladder__link_1'>
     <inertial>
+      <origin rpy="1.57 0 0" xyz="1.4 0.15 3"/>
       <mass value="1.0"/>
       <inertia ixx="0.1633333333333333" ixy="0.0" ixz="0.0" iyy="0" iyz="0.0" izz="0.0"/>
     </inertial>
@@ -120,6 +128,7 @@
 
   <link name='ladder__link_2'>
     <inertial>
+      <origin rpy="1.57 0 0" xyz="2.8 0.15 3"/>
       <mass value="1.0"/>
       <inertia ixx="0.1633333333333333" ixy="0.0" ixz="0.0" iyy="0" iyz="0.0" izz="0.0"/>
     </inertial>
@@ -163,6 +172,7 @@
 
   <link name='ladder__link_3'>
     <inertial>
+      <origin rpy="1.57 0 0" xyz="4.2 0.15 3"/>
       <mass value="1.0"/>
       <inertia ixx="0.1633333333333333" ixy="0.0" ixz="0.0" iyy="0" iyz="0.0" izz="0.0"/>
     </inertial>
@@ -204,7 +214,7 @@
     </collision>
   </link>
 
-  <gazebo reference="ladder__link_0">
+  <!-- <gazebo reference="ladder__link_0">
     <mu1>1e-03</mu1>
     <mu2>1e-03</mu2>
     <kp>0</kp>
@@ -231,7 +241,7 @@
     <kp>0</kp>
     <kd>0</kd>
     <material>Gazebo/Black</material>
-  </gazebo>
+  </gazebo> -->
 
   <gazebo>
     <static>true</static>
