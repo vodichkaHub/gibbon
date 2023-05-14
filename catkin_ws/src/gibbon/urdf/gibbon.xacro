@@ -48,20 +48,20 @@
       </inertial>
     </link>
 
-    <!-- <link name="link_1_tip">
+    <link name="link_1_tip">
       <inertial>
         <mass value="0.001" />
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <xacro:box_inertia mass="0.001" width="0.001" height="0.001" />
       </inertial>
-    </link> -->
+    </link>
     <!-- <link name="link_1_tip" /> -->
-    <!-- <joint name="link_1__link_1_tip" type="revolute">
+    <joint name="link_1__link_1_tip" type="revolute">
       <parent link="link_1_tip"/>
       <child link="link_1"/>
       <origin rpy="0 0 0" xyz="0 0 -0.1"/>
       <limit lower="0" upper="0" effort="0" velocity="0"/>
-    </joint> -->
+    </joint>
 
     <link name='link_2'>
       <collision>
@@ -86,26 +86,26 @@
       </inertial>
     </link>
 
-    <!-- <link name="link_2_tip">
+    <link name="link_2_tip">
       <inertial>
         <mass value="${arm_mass}" />
         <origin rpy="0 0 0" xyz="0 0 -${arm_len/2}"/>
         <xacro:box_inertia mass="${arm_mass}" width="${arm_radius}" height="${arm_len}" />
       </inertial>
-    </link> -->
-    <!-- <joint name="link_2__link_2_tip" type="revolute">
+    </link>
+    <joint name="link_2__link_2_tip" type="revolute">
       <parent link="link_2"/>
       <child link="link_2_tip"/>
       <origin rpy="0 0 0" xyz="${2*arm_radius} 0 ${arm_len + 0.1}"/>
       <limit lower="0" upper="0" effort="0" velocity="0"/>
-    </joint> -->
+    </joint>
 
     <joint name="link_1__link_2" type="continuous">
       <parent link="link_1"/>
       <child link="link_2"/>
       <!-- <limit effort="1000.0" lower="${-2*PI}" upper="${2*PI}" velocity="30.0"/> -->
       <origin rpy="${PI} 0 0" xyz="${2 * arm_radius + 0.001} 0 -${arm_len}"/>
-      <dynamics friction="0.0" damping="0.01"/>
+      <dynamics friction="0.0" damping="0.0"/>
     </joint>
     <transmission name="link_1__link_2_trans">
       <type>transmission_interface/SimpleTransmission</type>
@@ -180,7 +180,7 @@
       </joint>
       <transmission name="${link_name}_${prefix}_gripper_joint_trans">
         <type>transmission_interface/SimpleTransmission</type>
-        <actuator name="$${link_name}_${prefix}_gripper_joint_motor">
+        <actuator name="${link_name}_${prefix}_gripper_joint_motor">
           <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
           <mechanicalReduction>1</mechanicalReduction>
         </actuator>
@@ -215,7 +215,7 @@
         </collision>
         <inertial>
           <mass value="0.1" />
-          <origin rpy="0 0 0" xyz="0 0.0 0"/>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
           <xacro:box_inertia mass="0.1" width="0.1" height="0.1" />
         </inertial>
       </link>
