@@ -5,7 +5,7 @@
     <arg name="gui" default="true" />
 
 
-    <node pkg="tf" type="static_transform_publisher" name="gibbon_caster" args="0 0 0 0 0 0 1 world link_1_tip 100" />
+    <node pkg="tf" type="static_transform_publisher" name="gibbon_caster" args="0 0 0 0 0 0 1 world link_1 100" />
     <node pkg="tf" type="static_transform_publisher" name="ladder_caster" args="0 0 0 0 0 0 1 world ladder__link_0 100" />
     <param name="robot_description" command="$(find xacro)/xacro $(arg gibbon_model)" />
     <param name="ladder_description" command="$(find xacro)/xacro $(arg ladder_model)" />

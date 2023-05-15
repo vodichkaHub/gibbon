@@ -171,10 +171,10 @@
     </link>
 
     <xacro:macro name="gripper" params="prefix reflect link_name">
-      <joint name="${link_name}_${prefix}_gripper_joint" type="continuous">
+      <joint name="${link_name}_${prefix}_gripper_joint" type="revolute">
         <axis xyz="0 0 ${reflect}"/>
-        <!-- <limit effort="1000.0" lower="0.0" upper="3" velocity="30"/> -->
-        <origin rpy="0 0 0" xyz="${polelen} ${reflect*0.012} 0"/>
+        <limit effort="100.0" lower="0.0" upper="3" velocity="10"/>
+        <origin rpy="0 0 0" xyz="${polelen} ${reflect*0.014} 0"/>
         <parent link="${link_name}_gripper_pole"/>
         <child link="${link_name}_${prefix}_gripper"/>
         <dynamics friction="0.0" damping="0.0"/>
