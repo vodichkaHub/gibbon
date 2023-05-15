@@ -45,8 +45,9 @@ def solve(req: mpc_solveRequest):
     x0 = np.array([req.x0[0], req.x0[1], req.x0[2], req.x0[3]])
     xf = np.array([req.xf[0], req.xf[1], req.xf[2], req.xf[3]])
 
-    Q_mat = 2*np.diag([1e1, 1e1, 1e-1,1e-1])
-    R_mat = 2*np.diag([1e-1])
+    # Q_mat = 8*np.diag([2e3, 1e4, 1e2, 3e3]) ## brachiation with spikes
+    Q_mat = 2*np.diag([1e2, 1e3, 1e3, 6e3])
+    R_mat = 5*np.diag([1e3])
 
     ocp.cost.cost_type = 'EXTERNAL'
     ocp.cost.cost_type_e = 'EXTERNAL'
@@ -64,8 +65,8 @@ def solve(req: mpc_solveRequest):
     ocp.constraints.ubx_e = xf
     ocp.constraints.Jbx_e = np.eye(nx)
 
-    ocp.constraints.lbx = np.array([-2*np.pi, -2*np.pi, -no_lim, -no_lim])
-    ocp.constraints.ubx = np.array([2*np.pi, 2*np.pi, no_lim, no_lim])
+    ocp.constraints.lbx = np.array([-np.pi/2, -np.pi, -30, -30])
+    ocp.constraints.ubx = np.array([np.pi/2, np.pi, 30, 30])
     ocp.constraints.Jbx = np.eye(nx)
 
     ocp.solver_options.qp_solver = 'FULL_CONDENSING_HPIPM' # FULL_CONDENSING_QPOASES
@@ -103,6 +104,7 @@ def solve(req: mpc_solveRequest):
     # ocp_solver.print_statistics()
 
     if status != 0:
+        rospy.signal_shutdown('fail')
         return result
 
     # get solution
@@ -133,7 +135,7 @@ def solve(req: mpc_solveRequest):
     result.trajectory.append(r_q3);
     r_u.data = simU[:, 0]
     result.trajectory.append(r_u);
-    
+
     return result
 
 def mpc_server():

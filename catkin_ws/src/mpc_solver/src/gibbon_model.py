@@ -13,8 +13,8 @@ def export_gibbon_ode_model() -> AcadosModel:
     lc1 = l1/2
     l2 = 0.8
     lc2 = l2/2
-    m1 = 1.1
-    m2 = 1.1
+    m1 = 1.2
+    m2 = 1.2
     I1 = 1 / 3 * m1 * l1 * l1
     I2 = 1 / 3 * m2 * l2 * l2
     damp = 0.0
@@ -45,8 +45,8 @@ def export_gibbon_ode_model() -> AcadosModel:
     C = SX(np.array([[-2. * m2 * l1 * lc2 * sin(x2) * x4, -1. * m2 * l1 * lc2 * sin(x2) * x4],
                   [m2 * l1 * lc2 * sin(x2) * x3, 0]]))
 
-    G = vertcat(m1 * g * (h - lc1) * sin(x1) + m2 * g * ((h - l1) * sin(x1) + (h - lc2) * sin(x1 + x2)),
-                  m2 * g * (h - lc2) * sin(x1 + x2))
+    G = vertcat(m1 * g * lc1 * sin(x1) + m2 * g * (l1 * sin(x1) + lc2 * sin(x1 + x2)),
+                  m2 * g * lc2 * sin(x1 + x2))
 
     M_inv = inv_minor(M)
     # M_inv = solve(M, SX.eye(M.size1()))
