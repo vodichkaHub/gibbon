@@ -1,6 +1,6 @@
 gazebo_ros_control:
   pid_gains:
-    link_1__link_2: {p: 1000, d: 100, i: 0}
+    link_1__link_2: {p: 1000, i: 5.0, d: 5}
     link_1_left_gripper_joint: {p: 1000, d: 100, i: 0}
     link_1_right_gripper_joint: {p: 1000, d: 100, i: 0}
     link_2_left_gripper_joint: {p: 1000, d: 100, i: 0}
@@ -8,10 +8,10 @@ gazebo_ros_control:
 
 joint_drive:
   # type: position_controllers/JointPositionController
-  # type: effort_controllers/JointPositionController
-  type: effort_controllers/JointEffortController
+  # type: effort_controllers/JointEffortController
+  type: effort_controllers/JointPositionController
   joint: link_1__link_2
-  # pid: {p: 1000, i: 0.0, d: 100}
+  pid: {p: 1000, i: 5.0, d: 5}
 
 joint_l1_dl:
   # type: position_controllers/JointPositionController
